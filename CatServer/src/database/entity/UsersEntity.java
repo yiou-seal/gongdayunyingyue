@@ -1,11 +1,13 @@
 package database.entity;
 
 import javax.persistence.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "dbo", catalog = "musicgwydb")
-public class UsersEntity
+public class UsersEntity extends Entityfather
 {
 
     private String username;
@@ -146,6 +148,17 @@ public class UsersEntity
         this.email = spstr[5];
         this.accountstate = spstr[6];
     }
+
+    public void setvalue(ResultSet result) throws SQLException
+    {
+        this.setPassword(result.getString("password"));
+        this.setUserId(result.getInt("userID"));
+        this.setUsername(result.getString("username"));
+        this.setSex(result.getString("sex"));
+        this.setTelenumber(result.getString("telenumber"));
+        this.setEmail(result.getString("email"));
+    }
+
 
     @Override
     public int hashCode()
