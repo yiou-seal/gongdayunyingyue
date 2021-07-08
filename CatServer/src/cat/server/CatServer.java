@@ -1,9 +1,9 @@
 package cat.server;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,6 +18,7 @@ import database.*;
 import database.entity.UsersEntity;
 
 public class CatServer {
+	private static final char MSGENDCHAR = 0xff;
 	DefaultListModel myListmodel =new DefaultListModel<>();
 	private static ServerView serverView =null ;
 	private static ServerSocket ss;
@@ -51,6 +52,7 @@ public class CatServer {
 		CommandPraser cp;
 		HashSet<String> onlinefrind = new HashSet<String>();
 		ArrayList<String> friends=new ArrayList<String>();
+		public static final char MSGENDCHAR = 0xff;
 
 		public ClientThread(Socket client,databasesess dbsession) {
 			this.client = client;
@@ -63,13 +65,60 @@ public class CatServer {
 		{
 			try
 			{
+				bean = new CatBean();
+				bean.setType(41);
+
+				BufferedInputStream buffIn = new BufferedInputStream(client.getInputStream());
+				DataInputStream dataIn = new DataInputStream(buffIn);
 				// 不停的从客户端接收信息
 				while (true)
 				{
 					// 读取从客户端接收到的catbean信息
-					ois = new ObjectInputStream(client.getInputStream());
-					bean = (CatBean) ois.readObject();
+//					ois = new ObjectInputStream(client.getInputStream());
+//					bean = (CatBean) ois.readObject();
 
+
+						int c;
+						boolean didRun = false;
+						boolean isCommand = false;
+						//StringBuffer strBuff = new StringBuffer(0);
+						ArrayList<Byte> strBuff=new ArrayList<Byte>(0);
+						//sleep(10);
+						while( (c=dataIn.read()) != 0xff) {
+							strBuff.add((byte)(c & 0xFF));
+							if(!didRun) didRun=true;
+							if(c==0xFD) isCommand = true;
+						}
+					byte[] bj=new byte[strBuff.size()];
+					for (int i=0;i<strBuff.size();i++)
+					{
+						bj[i]=strBuff.get(i);
+					}
+						String receive=new String(bj);
+
+					System.out.println(receive);
+//					byte[] by=receive.getBytes("utf-8");
+//					ArrayList<Byte> ne=new ArrayList<Byte>(0);
+//					for (int i=by.length-1;i>=0;i--)
+//					{
+//						if(by[i]!=0)
+//							continue;
+//						ne.add(by[i]);
+//					}
+//					byte[] bj=new byte[ne.size()];
+//					for (int i=0;i<ne.size();i++)
+//					{
+//						bj[i]=ne.get(i);
+//					}
+//
+//					String jiema = new String(bj);
+					//String jiema= URLDecoder.decode(receive,"utf-8");
+					String aaa ="你";
+					byte[] bbb=aaa.getBytes();
+
+//						System.out.println(jiema);
+//E5
+						serverView.textArea.setText(receive);
 					// 分析catbean中，type是那样一种类型
 					switch (bean.getType())
 					{
@@ -194,8 +243,8 @@ public class CatServer {
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (ClassNotFoundException e)
-			{
+			//} catch (ClassNotFoundException e)
+			//{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally
@@ -430,6 +479,9 @@ public class CatServer {
 
 
 	public static void main(String[] args) {
+		String aaa ="" + "你" + MSGENDCHAR;
+		byte[] bbb=aaa.getBytes();
+		String ccc=new String(bbb);
 		serverView = new ServerView();
 		serverView.setVisible(true);
 		CatServer catServer =new CatServer();

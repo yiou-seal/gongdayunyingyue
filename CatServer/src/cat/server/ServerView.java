@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -40,7 +41,7 @@ public class ServerView extends JFrame{
 	private JButton button;
 	private JPanel panel;
 	private JPanel send_panel;
-	private JTextArea textArea;
+	public JTextArea textArea;
 	private JPanel info_panel;
 	public JList list;
 	private JPanel online_panel;
@@ -48,6 +49,7 @@ public class ServerView extends JFrame{
 	public MyListmodel myListmodel =null;
 	private JScrollPane scrollPane;
 	private CatServer  catServer= null;
+	public static final char MSGENDCHAR = 0xff;
 	
 	public void setCatServer(CatServer catServer) {
 		this.catServer =catServer;
@@ -148,12 +150,16 @@ public class ServerView extends JFrame{
 		
 		Collection<CatClientBean> clients = catServer.onlines.values();
 		Iterator<CatClientBean> it = clients.iterator();
-		ObjectOutputStream oos;
+		//ObjectOutputStream oos;
+		DataOutputStream oos;
 		while (it.hasNext()) {
 			Socket c = it.next().getSocket();
 			try {
-				oos = new ObjectOutputStream(c.getOutputStream());
-				oos.writeObject(serverBean);
+//				oos = new ObjectOutputStream(c.getOutputStream());
+				oos=new DataOutputStream(c.getOutputStream());
+//				oos.writeObject(serverBean);
+				oos.writeUTF("" + text);
+				oos.writeChar(MSGENDCHAR);
 				oos.flush();
 			} catch (IOException e) {
 				
