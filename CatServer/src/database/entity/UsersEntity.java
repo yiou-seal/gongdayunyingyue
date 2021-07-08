@@ -139,7 +139,7 @@ public class UsersEntity extends Entityfather
 
     public UsersEntity(String dollerstr)
     {
-        String[] spstr=dollerstr.split("\\$");
+        String[] spstr=dollerstr.split("\\$",-1);
         this.username = spstr[0];
         this.userId = Integer.parseInt(spstr[1]);
         this.sex = spstr[2];
