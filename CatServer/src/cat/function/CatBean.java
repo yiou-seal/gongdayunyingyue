@@ -54,6 +54,18 @@ public class CatBean implements Serializable {
 
 	private int port;
 
+	public CatBean()
+	{
+		this.type = 0;
+		this.info = "";
+		this.timer = "";
+		this.name = "";
+		this.fileName = "";
+		this.wantsendto = "";
+		this.size = 0;
+		this.ip = "";
+	}
+
 	public int getSize() {
 		return size;
 	}
@@ -152,6 +164,47 @@ public class CatBean implements Serializable {
 		this.onlines = onlines;
 	}
 
-	
-	
+	@Override
+	public String toString()
+	{
+		String sb = "" + "" +
+				type +
+				"#" +
+				info + "" +
+				"#" +
+				timer + "" +
+				"#" +
+				name + "" +
+				"#" +
+				fileName + "" +
+				"#" +
+				wantsendto + "" +
+				"#" +
+				size +
+				"#" +
+				ip + "" +
+				"";//最后必须加#
+		return sb;
+	}
+
+	public CatBean(String dollerstr)
+	{
+		String[] spstr=dollerstr.split("#",-1);
+		this.type = Integer.parseInt(spstr[0]);
+		this.info = spstr[1];
+		this.timer = spstr[2];
+		this.name = spstr[3];
+		this.fileName = spstr[4];
+		this.wantsendto = spstr[5];
+		this.size =  Integer.parseInt(spstr[6]);
+		this.ip = spstr[7];
+	}
+
+	public static void main(String args[])
+	{
+		CatBean a=new CatBean();
+		String c=a.toString();
+		CatBean b=new CatBean(a.toString());
+		System.out.println(b);
+	}
 }
