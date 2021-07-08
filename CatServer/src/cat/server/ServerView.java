@@ -152,20 +152,23 @@ public class ServerView extends JFrame{
 		Iterator<CatClientBean> it = clients.iterator();
 		//ObjectOutputStream oos;
 		DataOutputStream oos;
-		while (it.hasNext()) {
-			Socket c = it.next().getSocket();
+		//while (it.hasNext()) {
+			//Socket c = it.next().getSocket();
+			Socket c=catServer.asock;
 			try {
 //				oos = new ObjectOutputStream(c.getOutputStream());
 				oos=new DataOutputStream(c.getOutputStream());
 //				oos.writeObject(serverBean);
-				oos.writeUTF("" + text);
-				oos.writeChar(MSGENDCHAR);
+				oos.write(text.getBytes("gbk"));
+				//oos.writeBytes(text);
+				//oos.writeUTF(text);
+				//oos.writeChar(MSGENDCHAR);
 				oos.flush();
 			} catch (IOException e) {
 				
 				e.printStackTrace();
 			}
-		}
+		//}
 	}
 }
 	
