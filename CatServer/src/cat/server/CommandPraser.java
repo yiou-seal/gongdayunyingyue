@@ -119,7 +119,7 @@ public class CommandPraser
 
                 break;
             }
-            case 14://登录
+            case 15://登录
             {
                 signin(cc,bean);
 
@@ -155,7 +155,7 @@ private void addfriend(CatServer.ClientThread cc,CatBean bean)
         sendfriendsinfo(cc,bean);
 
         //给被添加的人发消息
-        serverBean.setType(12);
+        serverBean.setType(13);
         serverBean.setIcon(bean.getIcon());
         HashSet<String> target = new HashSet<String>();
         target.add(str[1]);
@@ -215,7 +215,7 @@ private void signin(CatServer.ClientThread cc,CatBean bean)
         boolean result=user.getPassword().equals(bean.getInfo());
 
         CatBean serverBean = new CatBean();
-        serverBean.setType(14);
+        serverBean.setType(15);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
         serverBean.setTo(bean.getTo());
@@ -232,7 +232,7 @@ private void signup(CatServer.ClientThread cc,CatBean bean)
         boolean result=user.getPassword().equals(bean.getInfo());
 
         CatBean serverBean = new CatBean();
-        serverBean.setType(14);
+        serverBean.setType(16);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
         serverBean.setTo(bean.getTo());

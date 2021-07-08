@@ -46,6 +46,8 @@ public class CatBean implements Serializable {
 
 	private String fileName;
 
+	private String wantsendto;
+
 	private int size;
 
 	private String ip;
@@ -130,6 +132,16 @@ public class CatBean implements Serializable {
 
 	public void setPort(int port) {
 		this.port = port;
+	}
+
+	public String getWantsendto()
+	{
+		return wantsendto;
+	}
+
+	public void setWantsendto(String wantsendto)
+	{
+		this.wantsendto = wantsendto;
 	}
 
 	public HashMap<String, CatClientBean> getOnlines() {

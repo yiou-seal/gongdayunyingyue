@@ -124,7 +124,7 @@
       <workItem from="1625565486910" duration="10282000" />
       <workItem from="1625582225565" duration="1089000" />
       <workItem from="1625619401245" duration="1112000" />
-      <workItem from="1625728098432" duration="9022000" />
+      <workItem from="1625728098432" duration="12645000" />
     </task>
     <servers />
   </component>
@@ -144,28 +144,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>186</line>
+          <line>182</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/ServerView.java</url>

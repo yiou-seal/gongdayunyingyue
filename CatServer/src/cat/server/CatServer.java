@@ -152,11 +152,7 @@ public class CatServer {
 //
 //					String jiema = new String(bj);
 					//String jiema= URLDecoder.decode(receive,"utf-8");
-					String aaa ="你";
-					byte[] bbb=aaa.getBytes();
 
-//						System.out.println(jiema);
-//E5
 					serverView.textArea.setText(receive);
 					// 分析catbean中，type是那样一种类型
 					switch (bean.getType())
@@ -292,67 +288,67 @@ public class CatServer {
 			}
 		}
 
-		private void addfriend()
-		{
-			CatBean serverBean = new CatBean();
-			serverBean.setType(12);
-			serverBean.setIcon(bean.getIcon());
-			serverBean.setClients(bean.getClients());
-			//serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-			String[] str=bean.getInfo().split("\\$");
-			serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[0],str[1])));
-			sendMessage(serverBean);
-			//更新好友列表
-			friends=dbsession.getfriendname(bean.getName());
-			//找出在线的好友
-			getonlinefriends();
-			//下面发送包含好友信息的包给发起添加的人
-			sendfriendsinfo();
-
-			//给被添加的人发消息
-			serverBean.setType(12);
-			serverBean.setIcon(bean.getIcon());
-			HashSet<String> target = new HashSet<String>();
-			target.add(str[1]);
-			serverBean.setClients(target);
-			//serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-
-			serverBean.setInfo(str[0]);
-			sendMessage(serverBean);
-		}
-
-		private void edituserinfo()
-		{
-			CatBean serverBean = new CatBean();
-			serverBean.setType(11);
-			serverBean.setIcon(bean.getIcon());
-			serverBean.setClients(bean.getClients());
-			serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-			dbsession.setuserinfo(new UsersEntity(bean.getInfo()));
-			serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
-			sendMessage(serverBean);
-		}
-
-		private void getuserinfo()
-		{
-			CatBean serverBean = new CatBean();
-
-			serverBean.setType(10);
-			serverBean.setIcon(bean.getIcon());
-			serverBean.setClients(bean.getClients());
-			serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-			serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
-			sendMessage(serverBean);
-		}
+//		private void addfriend()
+//		{
+//			CatBean serverBean = new CatBean();
+//			serverBean.setType(12);
+//			serverBean.setIcon(bean.getIcon());
+//			serverBean.setClients(bean.getClients());
+//			//serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//			String[] str=bean.getInfo().split("\\$");
+//			serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[0],str[1])));
+//			sendMessage(serverBean);
+//			//更新好友列表
+//			friends=dbsession.getfriendname(bean.getName());
+//			//找出在线的好友
+//			getonlinefriends();
+//			//下面发送包含好友信息的包给发起添加的人
+//			sendfriendsinfo();
+//
+//			//给被添加的人发消息
+//			serverBean.setType(13);
+//			serverBean.setIcon(bean.getIcon());
+//			HashSet<String> target = new HashSet<String>();
+//			target.add(str[1]);
+//			serverBean.setClients(target);
+//			//serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//
+//			serverBean.setInfo(str[0]);
+//			sendMessage(serverBean);
+//		}
+//
+//		private void edituserinfo()
+//		{
+//			CatBean serverBean = new CatBean();
+//			serverBean.setType(11);
+//			serverBean.setIcon(bean.getIcon());
+//			serverBean.setClients(bean.getClients());
+//			serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+//			dbsession.setuserinfo(new UsersEntity(bean.getInfo()));
+//			serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
+//			sendMessage(serverBean);
+//		}
+//
+//		private void getuserinfo()
+//		{
+//			CatBean serverBean = new CatBean();
+//
+//			serverBean.setType(10);
+//			serverBean.setIcon(bean.getIcon());
+//			serverBean.setClients(bean.getClients());
+//			serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//			serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
+//			sendMessage(serverBean);
+//		}
 
 		private void sendfriendsinfo()
 		{
@@ -366,39 +362,39 @@ public class CatServer {
 			sendMessage(serverBean);
 		}
 
-		private void signin()
-		{
-			UsersEntity user= dbsession.getuserinfo(bean.getName());
-			boolean result=user.getPassword().equals(bean.getInfo());
-
-			CatBean serverBean = new CatBean();
-			serverBean.setType(14);
-			serverBean.setIcon(bean.getIcon());
-			serverBean.setClients(bean.getClients());
-			serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-			serverBean.setInfo(String.valueOf(result));
-			sendMessage(serverBean);
-		}
-
-		private void signup()
-		{
-			UsersEntity user= dbsession.getuserinfo(bean.getName());
-			boolean result=user.getPassword().equals(bean.getInfo());
-
-			CatBean serverBean = new CatBean();
-			serverBean.setType(14);
-			serverBean.setIcon(bean.getIcon());
-			serverBean.setClients(bean.getClients());
-			serverBean.setTo(bean.getTo());
-			serverBean.setName(bean.getName());
-			serverBean.setTimer(bean.getTimer());
-			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-			serverBean.setInfo(String.valueOf(result));
-			sendMessage(serverBean);
-		}
+//		private void signin()
+//		{
+//			UsersEntity user= dbsession.getuserinfo(bean.getName());
+//			boolean result=user.getPassword().equals(bean.getInfo());
+//
+//			CatBean serverBean = new CatBean();
+//			serverBean.setType(14);
+//			serverBean.setIcon(bean.getIcon());
+//			serverBean.setClients(bean.getClients());
+//			serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+//			serverBean.setInfo(String.valueOf(result));
+//			sendMessage(serverBean);
+//		}
+//
+//		private void signup()
+//		{
+//			UsersEntity user= dbsession.getuserinfo(bean.getName());
+//			boolean result=user.getPassword().equals(bean.getInfo());
+//
+//			CatBean serverBean = new CatBean();
+//			serverBean.setType(14);
+//			serverBean.setIcon(bean.getIcon());
+//			serverBean.setClients(bean.getClients());
+//			serverBean.setTo(bean.getTo());
+//			serverBean.setName(bean.getName());
+//			serverBean.setTimer(bean.getTimer());
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+//			serverBean.setInfo(String.valueOf(result));
+//			sendMessage(serverBean);
+//		}
 
 		void getonlinefriends()
 		{
