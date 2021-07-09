@@ -128,6 +128,33 @@ public class databasesess
         return true;
     }
 
+    public  int insertuserinfo(UsersEntity user)
+    {
+
+        Statement st;
+        ResultSet result;
+        int count=count("users");
+        count++;
+
+
+
+        String sql="INSERT INTO users VALUES('"+user.getUsername()+"',"+user.getUserId()+",'"+user.getSex()+"','"+user.getPassword()+"','"+user.getEmail()+"','"+user.getTelenumber()+"','"+user.getEmail()+"','"+"正常"+"')";
+
+        try
+        {
+            st=con.createStatement();
+            st.executeUpdate(sql);
+
+            System.out.println("success setuserinfo");
+            return 0;
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     public ArrayList<String> getfriendname(String username)
     {
 
@@ -184,10 +211,6 @@ public class databasesess
 
         Statement st;
         ResultSet result;
-
-
-        //jdbc:sqlserver://localhost:1433;integratedSecurity=true选择windows本地验证登陆。
-//        String sql=("select st.Sid'学号',st.Sname'姓名',ug.gname'班级',uc.Cname'课程',sc.score2'期末成绩'from uStudent st inner join uSC sc on st.Sid=sc.sid inner join uGrade ug on st.gid=ug.gid inner join uCourse uc on sc.cid=uc.Cid order by st.Sid");
         String sql="select * from "+shet+" where "+colum+" = "+value+"";
         try
         {
@@ -206,6 +229,31 @@ public class databasesess
         {
             e.printStackTrace();
         }
+
+    }
+
+    public int count(String shet)
+    {
+
+        Statement st;
+        ResultSet result;
+        String sql="SELECT COUNT(*) from "+shet;
+        try
+        {
+            st=con.createStatement();
+            result=st.executeQuery(sql);
+
+            System.out.println("success getcount");
+            if(result.next())
+            {
+                return result.getInt(1);
+            }
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
 
     }
 }

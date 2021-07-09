@@ -142,12 +142,12 @@ public class ServerView extends JFrame{
 		serverBean.setType(1);
 		serverBean.setTimer(CatUtil.getTimer());
 		serverBean.setName("服务器");
-		
+
 		if(text.equals("")){
 			JOptionPane.showMessageDialog(ServerView.this, "不能发送空消息");
 			return;
 		}
-		
+
 		Collection<CatClientBean> clients = catServer.onlines.values();
 		Iterator<CatClientBean> it = clients.iterator();
 		//ObjectOutputStream oos;
@@ -165,10 +165,24 @@ public class ServerView extends JFrame{
 				//oos.writeChar(MSGENDCHAR);
 				oos.flush();
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 		//}
+
+
+//		try
+//		{
+//			Runtime runtime = Runtime.getRuntime();
+//			String[] command = {"D:\\大三\\软工课设\\tcp\\send.exe","C:\\Users\\zang\\Music\\精忠报国.mp3","8888"};
+//			Process process = runtime.exec(command);
+//
+//			int exitcode = process.waitFor();
+//			System.out.println("returnfff "+exitcode);
+//		} catch (Exception e)
+//		{
+//			System.out.println(e);
+//		}
 	}
 }
 	

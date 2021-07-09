@@ -48,7 +48,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="Application.CatBean">
+  <component name="RunManager" selected="Application.CatServer">
     <configuration name="CatBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cat.function.CatBean" />
       <module name="CatServer" />
@@ -106,8 +106,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CatBean" />
         <item itemvalue="Application.CatServer" />
+        <item itemvalue="Application.CatBean" />
         <item itemvalue="Application.databasesess" />
       </list>
     </recent_temporary>
@@ -139,7 +139,10 @@
       <workItem from="1625565486910" duration="10282000" />
       <workItem from="1625582225565" duration="1089000" />
       <workItem from="1625619401245" duration="1112000" />
-      <workItem from="1625728098432" duration="16103000" />
+      <workItem from="1625728098432" duration="16860000" />
+      <workItem from="1625798675491" duration="1051000" />
+      <workItem from="1625799877197" duration="4571000" />
+      <workItem from="1625823116639" duration="3036000" />
     </task>
     <servers />
   </component>
@@ -157,16 +160,6 @@
           <properties class="java.io.EOFException" package="java.io" />
           <option name="timeStamp" value="4" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>187</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/ServerView.java</url>
-          <line>164</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

@@ -125,6 +125,12 @@ public class CommandPraser
 
                 break;
             }
+            case 16://注册
+            {
+                signup(cc,bean);
+
+                break;
+            }
             default:
             {
                 break;
@@ -197,10 +203,10 @@ private void getuserinfo(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void sendfriendsinfo(CatServer.ClientThread cc,CatBean bean)
+public void sendfriendsinfo(CatServer.ClientThread cc,CatBean bean)
         {
         CatBean serverBean = new CatBean();
-        serverBean.setType(13);//包含好友信息的包
+        serverBean.setType(10);//包含好友信息的包
         serverBean.setInfo(cc.onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
         HashSet<String> target = new HashSet<String>();
         target.add(bean.getName());
@@ -209,8 +215,24 @@ private void sendfriendsinfo(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
+private void signup(CatServer.ClientThread cc,CatBean bean)
+        {//注册
+            int res=dbsession.insertuserinfo(new UsersEntity(bean.getInfo()));
+
+        CatBean serverBean = new CatBean();
+        serverBean.setType(16);
+        serverBean.setIcon(bean.getIcon());
+        serverBean.setClients(bean.getClients());
+        serverBean.setTo(bean.getTo());
+        serverBean.setName(bean.getName());
+        serverBean.setTimer(bean.getTimer());
+        //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+        serverBean.setInfo(String.valueOf(res));
+        cc.sendMessage(serverBean);
+        }
+
 private void signin(CatServer.ClientThread cc,CatBean bean)
-        {
+        {//登录
         UsersEntity user= dbsession.getuserinfo(bean.getName());
         boolean result=user.getPassword().equals(bean.getInfo());
 
@@ -222,24 +244,11 @@ private void signin(CatServer.ClientThread cc,CatBean bean)
         serverBean.setName(bean.getName());
         serverBean.setTimer(bean.getTimer());
         //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-        serverBean.setInfo(String.valueOf(result));
-        cc.sendMessage(serverBean);
-        }
+            if (result)
+                serverBean.setInfo("1");
+            else
+                serverBean.setInfo("0");
 
-private void signup(CatServer.ClientThread cc,CatBean bean)
-        {
-        UsersEntity user= dbsession.getuserinfo(bean.getName());
-        boolean result=user.getPassword().equals(bean.getInfo());
-
-        CatBean serverBean = new CatBean();
-        serverBean.setType(16);
-        serverBean.setIcon(bean.getIcon());
-        serverBean.setClients(bean.getClients());
-        serverBean.setTo(bean.getTo());
-        serverBean.setName(bean.getName());
-        serverBean.setTimer(bean.getTimer());
-        //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-        serverBean.setInfo(String.valueOf(result));
         cc.sendMessage(serverBean);
         }
 

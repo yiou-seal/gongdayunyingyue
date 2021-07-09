@@ -158,7 +158,7 @@ public class CatServer
                     //String jiema= URLDecoder.decode(receive,"utf-8");
 
                     serverView.textArea.setText(receive);
-                    bean=new CatBean(receive);
+                    bean = new CatBean(receive);
                     // 分析catbean中，type是那样一种类型
                     switch (bean.getType())
                     {
@@ -202,12 +202,13 @@ public class CatServer
                             //找出在线的好友
                             getonlinefriends();
                             //onlinefrind.addAll(onlines.keySet());
-                            serverBean.setClients(onlinefrind);
+                            serverBean.setClients(onlinefrind);//只显示在线好友
+                            //serverBean.setClients(new HashSet<>(friends));
                             sendMessage(serverBean);
 
                             //下面发送包含好友信息的包
 
-                            sendfriendsinfo();
+                            cp.sendfriendsinfo(this,bean);
 
                             break;
                         }
@@ -353,17 +354,17 @@ public class CatServer
 //			sendMessage(serverBean);
 //		}
 
-        private void sendfriendsinfo()
-        {
-            CatBean serverBean = new CatBean();
-            serverBean.setType(13);//包含好友信息的包
-            serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
-            HashSet<String> target = new HashSet<String>();
-            target.add(bean.getName());
-            serverBean.setName(bean.getName());
-            serverBean.setClients(target);
-            sendMessage(serverBean);
-        }
+//        private void sendfriendsinfo()
+//        {
+//            CatBean serverBean = new CatBean();
+//            serverBean.setType(14);//包含好友信息的包
+//            serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
+//            HashSet<String> target = new HashSet<String>();
+//            target.add(bean.getName());
+//            serverBean.setName(bean.getName());
+//            serverBean.setClients(target);
+//            sendMessage(serverBean);
+//        }
 
 //		private void signin()
 //		{
@@ -451,7 +452,7 @@ public class CatServer
                     try
                     {
                         //oos = new ObjectOutputStream(c.getOutputStream());
-                        oos=new DataOutputStream(c.getOutputStream());
+                        oos = new DataOutputStream(c.getOutputStream());
                         //oos.writeObject(serverBean);
                         oos.write(bean.toString().getBytes("gbk"));
                         oos.flush();
@@ -545,16 +546,41 @@ public class CatServer
 
     public static void main(String[] args)
     {
-        String aaa = "" + "你" + MSGENDCHAR;
-        byte[] bbb = aaa.getBytes();
-        String ccc = new String(bbb);
+//        try
+//        {
+//            Runtime runtime = Runtime.getRuntime();
+//            String[] command = {"D:\\大三\\软工课设\\tcp\\send.exe","C:\\Users\\zang\\Music\\精忠报国.mp3","8888"};
+//            Process process = runtime.exec(command);
+//
+//
+////            while (true)
+////            {
+////                //System.out.println("dasd");
+////                InputStream stream = process.getInputStream();
+////                if (stream.available() > 0)
+////                {
+////                    byte[] btmp = new byte[stream.available()];
+////                    stream.read(btmp);
+////                    System.out.println(btmp);
+////                }
+////            }
+//
+//
+//            int exitcode = process.waitFor();
+//            System.out.println("returnfff "+exitcode);
+//        } catch (Exception e)
+//        {
+//            System.out.println(e);
+//        }
+
         serverView = new ServerView();
         serverView.setVisible(true);
         CatServer catServer = new CatServer();
         catServer.start();
         serverView.setCatServer(catServer);
-    }
 
+
+    }
 }
 
 
