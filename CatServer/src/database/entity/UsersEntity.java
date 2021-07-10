@@ -114,22 +114,21 @@ public class UsersEntity extends Entityfather
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append(username).append("");
-        sb.append("$")
-                .append(userId);
-        sb.append("$")
-                .append(sex).append("");
-        sb.append("$")
-                .append(password).append("");
-        sb.append("$")
-                .append(telenumber).append("");
-        sb.append("$")
-                .append(email).append("");
-        sb.append("$")
-                .append(accountstate).append("");
-        sb.append("");
-        return sb.toString();
+        String sb = "" + username + "" +
+                "$" +
+                userId +
+                "$" +
+                sex + "" +
+                "$" +
+                password + "" +
+                "$" +
+                telenumber + "" +
+                "$" +
+                email + "" +
+                "$" +
+                accountstate + "" +
+                "";
+        return sb;
     }
 
     public UsersEntity()

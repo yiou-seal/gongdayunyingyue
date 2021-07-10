@@ -183,7 +183,7 @@ public class CatBean implements Serializable {
 				size +
 				"#" +
 				ip + "" +
-				"";//最后必须加#
+				"";
 		return sb;
 	}
 

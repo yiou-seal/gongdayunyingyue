@@ -1,0 +1,77 @@
+create table music
+(
+    name 	nvarchar(20) 	not null,
+    singer 	nvarchar(20)	not null,
+    musicID	int				not null primary key check(musicID >= 0),
+    musictype	nvarchar(10)	not null default '流行' check(musictype = '爵士' or musictype = '古典' or musictype = '流行'),
+    edition	nvarchar(20)  not null,
+    authorID int not null check(authorID >= 0),
+    fileplace nvarchar(100)  not null
+);
+
+create table accounts
+(
+	accountname	nvarchar(20)	not null,
+	accountID	int	not null	primary key check(accountID >= 0),
+	gender	nvarchar(10)	not null	check(gender = '男' or gender = '女' or gender = '保密'),
+	pswd	nvarchar(20)	not null	check(len(pswd) >= 6),
+	phonenum	nvarchar(20)	not null	check(len(phonenum) = 11),
+	email	nvarchar(30)	not null,  
+	accstatue nvarchar(10)	not null	default '离线'	check(accstatue = '在线' or accstatue = '离线' or accstatue = '封禁'),
+);
+
+create table feedback
+(
+	fdbkID	int	not null	primary key	check(fdbkID >= 0),
+	fdbk	nvarchar(300)	not null,
+	fdbktime	datetime	not null,
+	fdbkstatue	nvarchar(10)	not null,
+	adminID	int	not null,
+	accountID	int	not null,
+);
+
+create table comments
+(
+	commentID	int	not null	primary key	check(commentID >= 0),
+	comment	nvarchar(300)	not null,
+	commenttime	datetime2	not null,
+	musicID	int	not null	check(musicID >= 0),
+	accountID	int	not null	check(accountID >= 0),
+);
+
+create table musicsheet
+(
+	sheetID	int	not null	primary key	check(sheetID >= 0),
+	sheetname	nvarchar(20)	not null default '新建歌单',
+	musicnum	int	not null	check(musicnum >= 0),
+	sheettime	datetime2	not null,
+	accountID	int	not null	check(accountID >= 0),
+);
+
+create table administrator
+(
+	adminID	int	not null	primary key	check(adminID >= 0),
+	adminname	nvarchar(20)	not null,
+	adminpswd	nvarchar(20)	not null,
+);
+
+create table friends
+(
+	acc1ID	int	not null	check(acc1ID >= 0),
+	acc2ID	int	not null	check(acc2ID >= 0)	primary key(acc1ID, acc2ID),
+);
+
+create table madeup
+(
+	sheetID	int	not null	check(sheetID >= 0),
+	musicID	int	not null	check(musicID >= 0)	primary key (sheetID, musicID),
+);
+
+create table chat
+(
+	msgID	int	not null	check(msgID >= 0),
+	sendID	int not null	check(sendID >= 0),
+	rcvID	int not null	check(rcvID >=0)	primary key(msgID, sendID, rcvID),
+	msg	nvarchar(300)	not null,	
+	msgtime	datetime2	not null
+);

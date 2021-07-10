@@ -40,13 +40,13 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CatClient" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/database/entity" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunManager" selected="Application.CatServer">
     <configuration name="CatBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -88,13 +88,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,8 +109,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CatServer" />
-        <item itemvalue="Application.CatBean" />
         <item itemvalue="Application.databasesess" />
+        <item itemvalue="Application.CatBean" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +144,8 @@
       <workItem from="1625728098432" duration="16860000" />
       <workItem from="1625798675491" duration="1051000" />
       <workItem from="1625799877197" duration="4571000" />
-      <workItem from="1625823116639" duration="3036000" />
+      <workItem from="1625823116639" duration="12125000" />
+      <workItem from="1625877223412" duration="13953000" />
     </task>
     <servers />
   </component>
@@ -156,10 +159,41 @@
           <properties class="com.microsoft.sqlserver.jdbc.SQLServerException" package="com.microsoft.sqlserver.jdbc" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.io.EOFException" package="java.io" />
-          <option name="timeStamp" value="4" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>254</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
+          <line>451</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>265</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>270</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>274</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>289</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -168,5 +202,9 @@
         <PinnedItemInfo parentTag="java.lang.StringBuffer" memberName="value" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -3,10 +3,7 @@ package cat.server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -14,10 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
-import com.google.gson.JsonObject;
 
 import database.*;
-import database.entity.UsersEntity;
 
 public class CatServer
 {
@@ -53,7 +48,7 @@ public class CatServer
     class ClientThread extends Thread
     {//用于连接的，每个用户一个线程
 
-        private Socket client;
+        private Socket clientthis;
         private CatBean bean;
         private ObjectInputStream ois;
         private ObjectOutputStream oos;
@@ -63,9 +58,9 @@ public class CatServer
         ArrayList<String> friends = new ArrayList<String>();
         public static final char MSGENDCHAR = 0xff;
 
-        public ClientThread(Socket client, databasesess dbsession)
+        public ClientThread(Socket clientthis, databasesess dbsession)
         {
-            this.client = client;
+            this.clientthis = clientthis;
             this.dbsession = dbsession;
             cp = new CommandPraser(dbsession);
         }
@@ -78,7 +73,7 @@ public class CatServer
                 bean = new CatBean();
                 bean.setType(41);
 
-                BufferedInputStream buffIn = new BufferedInputStream(client.getInputStream());
+                BufferedInputStream buffIn = new BufferedInputStream(clientthis.getInputStream());
                 DataInputStream dataIn = new DataInputStream(buffIn);
                 // 不停的从客户端接收信息
                 while (true)
@@ -168,7 +163,7 @@ public class CatServer
                             // 记录上线客户的用户名和端口在clientbean中
                             CatClientBean cbean = new CatClientBean();
                             cbean.setName(bean.getName());
-                            cbean.setSocket(client);
+                            cbean.setSocket(clientthis);
                             cbean.setThreadname(Thread.currentThread().getName());
                             // 添加在线用户
                             onlines.put(bean.getName(), cbean);
@@ -221,7 +216,7 @@ public class CatServer
                             try
                             {
                                 oos = new ObjectOutputStream(
-                                        client.getOutputStream());
+                                        clientthis.getOutputStream());
                                 oos.writeObject(serverBean);
                                 oos.flush();
                             } catch (IOException e)
@@ -466,6 +461,31 @@ public class CatServer
             }
         }
 
+        void sendMessagewithsocket(CatBean serverBean)
+        {
+
+
+
+
+
+                    //ObjectOutputStream oos;
+                    DataOutputStream oos;
+                    try
+                    {
+                        //oos = new ObjectOutputStream(c.getOutputStream());
+                        oos = new DataOutputStream(clientthis.getOutputStream());
+                        //oos.writeObject(serverBean);
+                        oos.write(serverBean.toString().getBytes("gbk"));
+                        oos.flush();
+                    } catch (IOException e)
+                    {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+        }
+
         // 向所有的用户发送数据
         private void sendAll(CatBean serverBean)
         {
@@ -512,11 +532,11 @@ public class CatServer
                     e.printStackTrace();
                 }
             }
-            if (client != null)
+            if (clientthis != null)
             {
                 try
                 {
-                    client.close();
+                    clientthis.close();
                 } catch (IOException e)
                 {
                     // TODO Auto-generated catch block

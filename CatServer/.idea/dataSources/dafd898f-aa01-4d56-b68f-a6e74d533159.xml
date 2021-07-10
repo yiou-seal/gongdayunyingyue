@@ -136,7 +136,7 @@
     </schema>
     <schema id="30" parent="7" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-06-30.20:22:36.623</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-07-10.02:45:56.720</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="31" parent="7" name="guest">
@@ -234,22 +234,32 @@
       <CreatedTimestamp>2021-06-30.06:05:49.840</CreatedTimestamp>
       <ModifiedTimestamp>2021-06-30.06:05:49.840</ModifiedTimestamp>
     </table>
-    <table id="49" parent="30" name="users">
+    <table id="49" parent="30" name="music">
+      <ObjectId>1205579333</ObjectId>
+      <CreatedTimestamp>2021-07-10.02:44:17.167</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:44:17.167</ModifiedTimestamp>
+    </table>
+    <table id="50" parent="30" name="musicsheet">
+      <ObjectId>1301579675</ObjectId>
+      <CreatedTimestamp>2021-07-10.02:45:56.043</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:45:56.043</ModifiedTimestamp>
+    </table>
+    <table id="51" parent="30" name="users">
       <ObjectId>581577110</ObjectId>
       <CreatedTimestamp>2021-06-25.03:05:49.440</CreatedTimestamp>
       <ModifiedTimestamp>2021-06-25.03:05:49.440</ModifiedTimestamp>
     </table>
-    <column id="50" parent="48" name="user1">
+    <column id="52" parent="48" name="user1">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="48" name="user2">
+    <column id="53" parent="48" name="user2">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="52" parent="48" name="PK__friends__E934B3F56A3C47BD">
+    <index id="54" parent="48" name="PK__friends__E934B3F56A3C47BD">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user1
@@ -257,7 +267,7 @@ user2</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="53" parent="48" name="PK__friends__E934B3F56A3C47BD">
+    <key id="55" parent="48" name="PK__friends__E934B3F56A3C47BD">
       <ObjectId>901578250</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-30.06:05:49.933</CreatedTimestamp>
@@ -267,49 +277,207 @@ user2</ColNames>
       <UnderlyingIndexName>PK__friends__E934B3F56A3C47BD</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="54" parent="49" name="username">
+    <column id="56" parent="49" name="name">
       <Position>1</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="49" name="userID">
+    <column id="57" parent="49" name="singer">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="56" parent="49" name="sex">
-      <Position>3</Position>
-      <DataType>nvarchar(10 char)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="57" parent="49" name="password">
-      <Position>4</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="49" name="telenumber">
+    <column id="58" parent="49" name="musicID">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="49" name="musictype">
+      <Position>4</Position>
+      <DefaultConstraintName>DF__music__musictype__4AB81AF0</DefaultConstraintName>
+      <DefaultExpression>&apos;流行&apos;</DefaultExpression>
+      <DataType>nvarchar(10 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="49" name="edition">
       <Position>5</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="49" name="email">
+    <column id="61" parent="49" name="authorID">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="49" name="fileplace">
+      <Position>7</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="63" parent="49" name="PK__music__AB12F79EBA727C30">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>musicID</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="64" parent="49" name="PK__music__AB12F79EBA727C30">
+      <ObjectId>1221579390</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:44:17.320</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:44:17.320</ModifiedTimestamp>
+      <ColNames>musicID</ColNames>
+      <UnderlyingIndexName>PK__music__AB12F79EBA727C30</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <check id="65" parent="49" name="CK__music__authorID__4CA06362">
+      <ObjectId>1285579618</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:44:17.380</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:44:17.380</ModifiedTimestamp>
+      <ColNames>authorID</ColNames>
+      <Predicate>[authorID]&gt;=0</Predicate>
+    </check>
+    <check id="66" parent="49" name="CK__music__musicID__49C3F6B7">
+      <ObjectId>1237579447</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:44:17.337</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:44:17.337</ModifiedTimestamp>
+      <ColNames>musicID</ColNames>
+      <Predicate>[musicID]&gt;=0</Predicate>
+    </check>
+    <check id="67" parent="49" name="CK__music__musictype__4BAC3F29">
+      <ObjectId>1269579561</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:44:17.380</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:44:17.380</ModifiedTimestamp>
+      <ColNames>musictype</ColNames>
+      <Predicate>[musictype]=&apos;爵士&apos; OR [musictype]=&apos;古典&apos; OR [musictype]=&apos;流行&apos;</Predicate>
+    </check>
+    <default id="68" parent="49" name="DF__music__musictype__4AB81AF0">
+      <ObjectId>1253579504</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-07-10.02:44:17.377</ModifiedTimestamp>
+      <ColNames>musictype</ColNames>
+      <DefaultExpression>&apos;流行&apos;</DefaultExpression>
+    </default>
+    <column id="69" parent="50" name="sheetID">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="50" name="sheetname">
+      <Position>2</Position>
+      <DefaultConstraintName>DF__musicshee__sheet__5070F446</DefaultConstraintName>
+      <DefaultExpression>&apos;新建歌单&apos;</DefaultExpression>
+      <DataType>nvarchar(20 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="50" name="musicnum">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="50" name="sheettime">
+      <Position>4</Position>
+      <DataType>datetime2|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="50" name="accountID">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="74" parent="50" name="PK__musicshe__1C0D5BB3FD89EDFB">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sheetID</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="75" parent="50" name="PK__musicshe__1C0D5BB3FD89EDFB">
+      <ObjectId>1317579732</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:45:56.127</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:45:56.127</ModifiedTimestamp>
+      <ColNames>sheetID</ColNames>
+      <UnderlyingIndexName>PK__musicshe__1C0D5BB3FD89EDFB</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <check id="76" parent="50" name="CK__musicshee__accou__52593CB8">
+      <ObjectId>1381579960</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:45:56.140</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:45:56.140</ModifiedTimestamp>
+      <ColNames>accountID</ColNames>
+      <Predicate>[accountID]&gt;=0</Predicate>
+    </check>
+    <check id="77" parent="50" name="CK__musicshee__music__5165187F">
+      <ObjectId>1365579903</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:45:56.137</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:45:56.137</ModifiedTimestamp>
+      <ColNames>musicnum</ColNames>
+      <Predicate>[musicnum]&gt;=0</Predicate>
+    </check>
+    <check id="78" parent="50" name="CK__musicshee__sheet__4F7CD00D">
+      <ObjectId>1333579789</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-10.02:45:56.137</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-10.02:45:56.137</ModifiedTimestamp>
+      <ColNames>sheetID</ColNames>
+      <Predicate>[sheetID]&gt;=0</Predicate>
+    </check>
+    <default id="79" parent="50" name="DF__musicshee__sheet__5070F446">
+      <ObjectId>1349579846</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-07-10.02:45:56.137</ModifiedTimestamp>
+      <ColNames>sheetname</ColNames>
+      <DefaultExpression>&apos;新建歌单&apos;</DefaultExpression>
+    </default>
+    <column id="80" parent="51" name="username">
+      <Position>1</Position>
+      <DataType>nvarchar(20 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="51" name="userID">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="51" name="sex">
+      <Position>3</Position>
+      <DataType>nvarchar(10 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="51" name="password">
+      <Position>4</Position>
+      <DataType>nvarchar(20 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="51" name="telenumber">
+      <Position>5</Position>
+      <DataType>nvarchar(20 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="51" name="email">
       <Position>6</Position>
       <DataType>nvarchar(30 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="49" name="accountstate">
+    <column id="86" parent="51" name="accountstate">
       <Position>7</Position>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="61" parent="49" name="PK__users__CB9A1CDF264DA146">
+    <index id="87" parent="51" name="PK__users__CB9A1CDF264DA146">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="62" parent="49" name="PK__users__CB9A1CDF264DA146">
+    <key id="88" parent="51" name="PK__users__CB9A1CDF264DA146">
       <ObjectId>597577167</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-25.03:05:49.483</CreatedTimestamp>
