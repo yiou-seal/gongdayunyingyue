@@ -20,7 +20,7 @@ public class CatServer
     DefaultListModel myListmodel = new DefaultListModel<>();
     private static ServerView serverView = null;
     private static ServerSocket ss;
-    public static HashMap<String, CatClientBean> onlines;//±£´æÁ¬½ÓÐÅÏ¢
+    public static HashMap<String, CatClientBean> onlines;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
     public static Socket asock;
 
     static DefaultTableModel defaultTableModel = new DefaultTableModel();
@@ -36,9 +36,9 @@ public class CatServer
 
             onlines = new HashMap<String, CatClientBean>();
 
-            defaultTableModel.addColumn("ÓÃ»§Ãû");
-            defaultTableModel.addColumn("Ö÷»úipµØÖ·");
-            defaultTableModel.addColumn("µÇÂ½Ê±¼ä");
+            defaultTableModel.addColumn("ï¿½Ã»ï¿½ï¿½ï¿½");
+            defaultTableModel.addColumn("ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½Ö·");
+            defaultTableModel.addColumn("ï¿½ï¿½Â½Ê±ï¿½ï¿½");
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -46,9 +46,10 @@ public class CatServer
     }
 
     class ClientThread extends Thread
-    {//ÓÃÓÚÁ¬½ÓµÄ£¬Ã¿¸öÓÃ»§Ò»¸öÏß³Ì
+    {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÓµÄ£ï¿½Ã¿ï¿½ï¿½ï¿½Ã»ï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½
 
         private Socket clientthis;
+        private String ipthis;
         private CatBean bean;
         private ObjectInputStream ois;
         private ObjectOutputStream oos;
@@ -75,7 +76,7 @@ public class CatServer
 
                 BufferedInputStream buffIn = new BufferedInputStream(clientthis.getInputStream());
                 DataInputStream dataIn = new DataInputStream(buffIn);
-                // ²»Í£µÄ´Ó¿Í»§¶Ë½ÓÊÕÐÅÏ¢
+                // ï¿½ï¿½Í£ï¿½Ä´Ó¿Í»ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
                 while (true)
                 {
 
@@ -107,7 +108,7 @@ public class CatServer
                     System.out.println(receive);
 
 
-                    // ¶ÁÈ¡´Ó¿Í»§¶Ë½ÓÊÕµ½µÄcatbeanÐÅÏ¢
+                    // ï¿½ï¿½È¡ï¿½Ó¿Í»ï¿½ï¿½Ë½ï¿½ï¿½Õµï¿½ï¿½ï¿½catbeanï¿½ï¿½Ï¢
 //					ois = new ObjectInputStream(client.getInputStream());
 //					bean = (CatBean) ois.readObject();
 
@@ -154,18 +155,21 @@ public class CatServer
 
                     serverView.textArea.setText(receive);
                     bean = new CatBean(receive);
-                    // ·ÖÎöcatbeanÖÐ£¬typeÊÇÄÇÑùÒ»ÖÖÀàÐÍ
+                    // ï¿½ï¿½ï¿½ï¿½catbeanï¿½Ð£ï¿½typeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     switch (bean.getType())
                     {
-                        // ÉÏÏÂÏß¸üÐÂ
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½
                         case 0:
-                        { // ÉÏÏß
-                            // ¼ÇÂ¼ÉÏÏß¿Í»§µÄÓÃ»§ÃûºÍ¶Ë¿ÚÔÚclientbeanÖÐ
+                        { // ï¿½ï¿½ï¿½ï¿½
+                            // ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ß¿Í»ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Í¶Ë¿ï¿½ï¿½ï¿½clientbeanï¿½ï¿½
                             CatClientBean cbean = new CatClientBean();
                             cbean.setName(bean.getName());
                             cbean.setSocket(clientthis);
                             cbean.setThreadname(Thread.currentThread().getName());
-                            // Ìí¼ÓÔÚÏßÓÃ»§
+                            cbean.setIp(bean.getIp());
+                            this.ipthis= bean.getIp();
+
+                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
                             onlines.put(bean.getName(), cbean);
 
                             new Thread()
@@ -179,7 +183,7 @@ public class CatServer
                                     data[1] = (onlines.get(bean.getName()).getSocket().getLocalSocketAddress().toString());
                                     data[2] = (CatUtil.getTimer());
 
-                                    defaultTableModel.addRow(data);//µÇÂ¼µÄÓÃ»§Ãû£¬ip,Ê±¼ä£¬¼Óµ½½çÃæµÄ±íÀï
+                                    defaultTableModel.addRow(data);//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ip,Ê±ï¿½ä£¬ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
                                     serverView.list.setModel(myListmodel);
                                     serverView.table.setModel(defaultTableModel);
                                 }
@@ -187,29 +191,29 @@ public class CatServer
                                 ;
                             }.start();
 
-                            // ´´½¨·þÎñÆ÷µÄcatbean£¬²¢·¢ËÍ¸ø¿Í»§¶Ë
+                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½catbeanï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½Í»ï¿½ï¿½ï¿½
                             CatBean serverBean = new CatBean();
                             serverBean.setType(0);
                             serverBean.setInfo(bean.getTimer() + "  "
-                                    + bean.getName() + "ÉÏÏßÁË");
-                            // Ñ°ÕÒºÃÓÑÁÐ±í
+                                    + bean.getName() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                            // Ñ°ï¿½Òºï¿½ï¿½ï¿½ï¿½Ð±ï¿½
                             friends = dbsession.getfriendname(bean.getName());
-                            //ÕÒ³öÔÚÏßµÄºÃÓÑ
+                            //ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ßµÄºï¿½ï¿½ï¿½
                             getonlinefriends();
                             //onlinefrind.addAll(onlines.keySet());
-                            serverBean.setClients(onlinefrind);//Ö»ÏÔÊ¾ÔÚÏßºÃÓÑ
+                            serverBean.setClients(onlinefrind);//Ö»ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ßºï¿½ï¿½ï¿½
                             //serverBean.setClients(new HashSet<>(friends));
                             sendMessage(serverBean);
 
-                            //ÏÂÃæ·¢ËÍ°üº¬ºÃÓÑÐÅÏ¢µÄ°ü
+                            //ï¿½ï¿½ï¿½æ·¢ï¿½Í°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä°ï¿½
 
                             cp.sendfriendsinfo(this,bean);
 
                             break;
                         }
                         case -1:
-                        { // ÏÂÏß
-                            // ´´½¨·þÎñÆ÷µÄcatbean£¬²¢·¢ËÍ¸ø¿Í»§¶Ë
+                        { // ï¿½ï¿½ï¿½ï¿½
+                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½catbeanï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½Í»ï¿½ï¿½ï¿½
                             CatBean serverBean = new CatBean();
                             serverBean.setType(-1);
 
@@ -244,13 +248,13 @@ public class CatServer
 
                                 ;
                             }.start();
-                            // ÏòÊ£ÏÂµÄÔÚÏßÓÃ»§·¢ËÍÓÐÈËÀë¿ªµÄÍ¨Öª
+                            // ï¿½ï¿½Ê£ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½Í¨Öª
                             CatBean serverBean2 = new CatBean();
                             serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
-                                    + bean.getName() + "" + " ÏÂÏßÁË");
+                                    + bean.getName() + "" + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                             serverBean2.setType(0);
 
-                            //ÕÒ³öÔÚÏßµÄºÃÓÑ
+                            //ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ßµÄºï¿½ï¿½ï¿½
                             getonlinefriends();
                             //onlinefrind.addAll(onlines.keySet());
                             serverBean.setClients(onlinefrind);
@@ -263,7 +267,7 @@ public class CatServer
 //							sendAll(serverBean2);
 
 
-                            //½ø³Ì½áÊø
+                            //ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½
                             return;
                         }
                         default:
@@ -299,14 +303,14 @@ public class CatServer
 //			String[] str=bean.getInfo().split("\\$");
 //			serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[0],str[1])));
 //			sendMessage(serverBean);
-//			//¸üÐÂºÃÓÑÁÐ±í
+//			//ï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 //			friends=dbsession.getfriendname(bean.getName());
-//			//ÕÒ³öÔÚÏßµÄºÃÓÑ
+//			//ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ßµÄºï¿½ï¿½ï¿½
 //			getonlinefriends();
-//			//ÏÂÃæ·¢ËÍ°üº¬ºÃÓÑÐÅÏ¢µÄ°ü¸ø·¢ÆðÌí¼ÓµÄÈË
+//			//ï¿½ï¿½ï¿½æ·¢ï¿½Í°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½
 //			sendfriendsinfo();
 //
-//			//¸ø±»Ìí¼ÓµÄÈË·¢ÏûÏ¢
+//			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Ë·ï¿½ï¿½ï¿½Ï¢
 //			serverBean.setType(13);
 //			serverBean.setIcon(bean.getIcon());
 //			HashSet<String> target = new HashSet<String>();
@@ -329,7 +333,7 @@ public class CatServer
 //			serverBean.setTo(bean.getTo());
 //			serverBean.setName(bean.getName());
 //			serverBean.setTimer(bean.getTimer());
-//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ÐèÒª¸Ä
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ï¿½ï¿½Òªï¿½ï¿½
 //			dbsession.setuserinfo(new UsersEntity(bean.getInfo()));
 //			serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
 //			sendMessage(serverBean);
@@ -352,7 +356,7 @@ public class CatServer
 //        private void sendfriendsinfo()
 //        {
 //            CatBean serverBean = new CatBean();
-//            serverBean.setType(14);//°üº¬ºÃÓÑÐÅÏ¢µÄ°ü
+//            serverBean.setType(14);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä°ï¿½
 //            serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
 //            HashSet<String> target = new HashSet<String>();
 //            target.add(bean.getName());
@@ -373,7 +377,7 @@ public class CatServer
 //			serverBean.setTo(bean.getTo());
 //			serverBean.setName(bean.getName());
 //			serverBean.setTimer(bean.getTimer());
-//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ÐèÒª¸Ä
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ï¿½ï¿½Òªï¿½ï¿½
 //			serverBean.setInfo(String.valueOf(result));
 //			sendMessage(serverBean);
 //		}
@@ -390,7 +394,7 @@ public class CatServer
 //			serverBean.setTo(bean.getTo());
 //			serverBean.setName(bean.getName());
 //			serverBean.setTimer(bean.getTimer());
-//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ÐèÒª¸Ä
+//			//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//ï¿½ï¿½Òªï¿½ï¿½
 //			serverBean.setInfo(String.valueOf(result));
 //			sendMessage(serverBean);
 //		}
@@ -398,7 +402,7 @@ public class CatServer
         void getonlinefriends()
         {
             onlinefrind.clear();
-            // ÕÒ³öÔÚÏßµÄºÃÓÑ
+            // ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ßµÄºï¿½ï¿½ï¿½
             for (String key : onlines.keySet())
             {
                 if (friends.contains(key))
@@ -410,10 +414,10 @@ public class CatServer
 
         private void chat()
         {
-            //		´´½¨·þÎñÆ÷µÄcatbean£¬²¢·¢ËÍ¸ø¿Í»§¶Ë
+            //		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½catbeanï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½Í»ï¿½ï¿½ï¿½
             CatBean serverBean = new CatBean();
             serverBean.setType(1);
-            serverBean.setClients(bean.getClients());//Ä¿±êÓÃ»§
+            serverBean.setClients(bean.getClients());//Ä¿ï¿½ï¿½ï¿½Ã»ï¿½
             serverBean.setInfo(bean.getInfo());
             serverBean.setName(bean.getName());
             if (bean.getAttributeSet() != null)
@@ -421,24 +425,24 @@ public class CatServer
                 serverBean.setAttributeSet(bean.getAttributeSet());
             }
             serverBean.setTimer(bean.getTimer());
-            // ÏòÑ¡ÖÐµÄ¿Í»§·¢ËÍÊý¾Ý
+            // ï¿½ï¿½Ñ¡ï¿½ÐµÄ¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             sendMessage(serverBean);
         }
 
 
-        // ÏòÑ¡ÖÐµÄÓÃ»§·¢ËÍÊý¾Ý
+        // ï¿½ï¿½Ñ¡ï¿½Ðµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         void sendMessage(CatBean serverBean)
         {
-            // Ê×ÏÈÈ¡µÃËùÓÐµÄvalues
+            // ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½values
             Set<String> cbs = onlines.keySet();
             Iterator<String> it = cbs.iterator();
-            // Ñ¡ÖÐ¿Í»§
+            // Ñ¡ï¿½Ð¿Í»ï¿½
             HashSet<String> clients = serverBean.getClients();
             while (it.hasNext())
             {
-                // ÔÚÏß¿Í»§
+                // ï¿½ï¿½ï¿½ß¿Í»ï¿½
                 String client = it.next();
-                // Ñ¡ÖÐµÄ¿Í»§ÖÐÈôÊÇÔÚÏßµÄ£¬¾Í·¢ËÍserverbean
+                // Ñ¡ï¿½ÐµÄ¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµÄ£ï¿½ï¿½Í·ï¿½ï¿½ï¿½serverbean
                 if (clients.contains(client))
                 {
                     Socket c = onlines.get(client).getSocket();
@@ -486,7 +490,7 @@ public class CatServer
 
         }
 
-        // ÏòËùÓÐµÄÓÃ»§·¢ËÍÊý¾Ý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         private void sendAll(CatBean serverBean)
         {
             Collection<CatClientBean> clients = onlines.values();
@@ -544,6 +548,16 @@ public class CatServer
                 }
             }
         }
+
+        public String getIpthis()
+        {
+            return ipthis;
+        }
+
+        public void setIpthis(String ipthis)
+        {
+            this.ipthis = ipthis;
+        }
     }
 
     public void start()
@@ -561,6 +575,7 @@ public class CatServer
         {
             e.printStackTrace();
         }
+
     }
 
 
@@ -569,7 +584,7 @@ public class CatServer
 //        try
 //        {
 //            Runtime runtime = Runtime.getRuntime();
-//            String[] command = {"D:\\´óÈý\\Èí¹¤¿ÎÉè\\tcp\\send.exe","C:\\Users\\zang\\Music\\¾«ÖÒ±¨¹ú.mp3","8888"};
+//            String[] command = {"D:\\ï¿½ï¿½ï¿½ï¿½\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\\tcp\\send.exe","C:\\Users\\zang\\Music\\ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½.mp3","8888"};
 //            Process process = runtime.exec(command);
 //
 //

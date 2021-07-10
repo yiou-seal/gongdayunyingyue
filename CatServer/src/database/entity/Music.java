@@ -1,14 +1,17 @@
 package database.entity;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Music extends Entityfather {
 
   private String name;
   private String singer;
-  private int musicId;
+  private int musicID;
   private String musictype;
   private String edition;
-  private int authorId;
+  private int authorID;
   private String fileplace;
 
 
@@ -30,12 +33,12 @@ public class Music extends Entityfather {
   }
 
 
-  public int getMusicId() {
-    return musicId;
+  public int getMusicID() {
+    return musicID;
   }
 
-  public void setMusicId(int musicId) {
-    this.musicId = musicId;
+  public void setMusicID(int musicID) {
+    this.musicID = musicID;
   }
 
 
@@ -57,12 +60,12 @@ public class Music extends Entityfather {
   }
 
 
-  public int getAuthorId() {
-    return authorId;
+  public int getAuthorID() {
+    return authorID;
   }
 
-  public void setAuthorId(int authorId) {
-    this.authorId = authorId;
+  public void setAuthorID(int authorID) {
+    this.authorID = authorID;
   }
 
 
@@ -82,16 +85,44 @@ public class Music extends Entityfather {
             "$" +
             singer + "" +
             "$" +
-            musicId +
+            musicID +
             "$" +
             musictype + "" +
             "$" +
             edition + "" +
             "$" +
-            authorId +
+            authorID +
             "$" +
             fileplace + "" +
             "";
     return sb;
+  }
+
+
+
+  public Music()
+  {
+
+  }
+
+  public Music(String dollarstr)
+  {
+    String[] spstr=dollarstr.split("\\$",-1);
+    this.name = spstr[0];
+    this.singer = spstr[1];
+    this.musicID = Integer.parseInt(spstr[2]);
+    this.musictype = spstr[3];
+    this.edition = spstr[4];
+    this.authorID = Integer.parseInt(spstr[5]);
+    this.fileplace = spstr[6];
+  }
+
+  public void setvalue(ResultSet result) throws SQLException
+  {
+    this.setName(result.getString("name"));
+    this.setMusictype(result.getString("musictype"));
+    this.setEdition(result.getString("edition"));
+    this.setAuthorID(result.getInt("authorID"));
+    this.setFileplace(result.getString("fileplace"));
   }
 }

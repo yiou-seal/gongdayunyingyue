@@ -30,20 +30,7 @@ public class CommandPraser
             }
             case 2:
             { // 请求接受文件
-                // 创建服务器的catbean，并发送给客户端
-                CatBean serverBean = new CatBean();
-                String info = bean.getTimer() + "  " + bean.getName()
-                        + "向你传送文件,是否需要接受";
-
-                serverBean.setType(2);
-                serverBean.setClients(bean.getClients()); // 这是发送的目的地
-                serverBean.setFileName(bean.getFileName()); // 文件名称
-                serverBean.setSize(bean.getSize()); // 文件大小
-                serverBean.setInfo(info);
-                serverBean.setName(bean.getName()); // 来源
-                serverBean.setTimer(bean.getTimer());
-                // 向选中的客户发送数据
-                cc.sendMessage(serverBean);
+                receivemusic(cc, bean);
 
                 break;
             }
@@ -135,7 +122,7 @@ public class CommandPraser
         }
     }
 
-    private void sendmusic(CatServer.ClientThread cc, CatBean bean)
+    private synchronized void sendmusic(CatServer.ClientThread cc, CatBean bean)
     {
         try
         {
@@ -158,13 +145,50 @@ public class CommandPraser
             serverBean.setName(bean.getName()); // 接收的客户名称
             serverBean.setTimer(bean.getTimer());
             // 通知文件来源的客户，对方确定接收文件
-            cc.sendMessage(serverBean);
+            cc.sendMessagewithsocket(serverBean);
             int exitcode = process.waitFor();
             System.out.println("returnfff " + exitcode);
         } catch (Exception e)
         {
             System.out.println(e);
         }
+    }
+
+    private synchronized void receivemusic(CatServer.ClientThread cc, CatBean bean)
+    {
+        int res=0;
+        try
+        {
+            Runtime runtime = Runtime.getRuntime();
+            String[] command = {"D:\\大三\\软工课设\\tcp\\receive.exe", cc.getIpthis(), "8888"};
+            Process process = runtime.exec(command);
+
+            int exitcode = process.waitFor();
+            System.out.println("returnfff " + exitcode);
+            dbsession.insertmusicinfo(new Music(bean.getInfo()));
+            res=1;
+
+        } catch (Exception e)
+        {
+            System.out.println(e);
+            res=0;
+        }
+        // 让对方启动receive
+        CatBean serverBean = new CatBean();
+
+        serverBean.setType(2);
+        HashSet<String> target = new HashSet<String>();
+        target.add(bean.getName());
+        serverBean.setClients(target);
+        serverBean.setInfo(res+"");
+        serverBean.setTo(bean.getTo()); // 文件目的地
+        serverBean.setFileName(""+bean.getFileName()+".mp3"); // 文件名称
+        serverBean.setIp(bean.getIp());
+        serverBean.setPort(bean.getPort());
+        serverBean.setName(bean.getName()); // 接收的客户名称
+        serverBean.setTimer(bean.getTimer());
+        // 通知文件来源的客户，对方确定接收文件
+        cc.sendMessage(serverBean);
     }
 
 
@@ -290,7 +314,6 @@ public class CommandPraser
         cc.sendMessagewithsocket(serverBean);
     }
 
-
     private void chat(CatServer.ClientThread cc, CatBean bean)
     {
         //		创建服务器的catbean，并发送给客户端
@@ -318,8 +341,17 @@ public class CommandPraser
         for (int i=0;i<result.size();i++)
         {
             if (i==0)
+            {
+                //System.out.println("aaaaaaaaaa");
                 info.append(result.get(i));
-            info.append("$").append(result.get(i));
+            }
+
+            else
+            {
+                //System.out.println("ddddddddd");
+                info.append("$").append(result.get(i));
+            }
+
         }
         String strinfo=info.toString();
 
@@ -334,7 +366,7 @@ public class CommandPraser
         serverBean.setName(bean.getName());
         serverBean.setTimer(bean.getTimer());
         serverBean.setInfo(strinfo);
-        cc.sendMessage(serverBean);
+        cc.sendMessagewithsocket(serverBean);
     }
 
     public static void aaa(String a)

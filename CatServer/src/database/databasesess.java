@@ -1,6 +1,7 @@
 package database;
 
 import database.entity.Entityfather;
+import database.entity.Music;
 import database.entity.UsersEntity;
 
 import javax.xml.registry.infomodel.User;
@@ -50,14 +51,14 @@ public class databasesess
 //        dbs.insertuserinfo(new UsersEntity("2$1$3$6$4$5$"));
         //ceshi
 //        textcode
-//        databasesess dbs=new databasesess();
-//        dbs.insertuserinfo(new UsersEntity("臧天昊$224$3$6$4$5$"));
-//        UsersEntity user=dbs.getuserinfo("224");
-//        System.out.println(user.getUsername());
-//        textcode
         databasesess dbs=new databasesess();
-        dbs.aaa("斯卡布罗");
-        System.out.println(dbs.findmusicnamelike("斯卡布罗"));
+        dbs.insertuserinfo(new UsersEntity("臧天昊$224$3$6$4$5$"));
+        UsersEntity user=dbs.getuserinfo("224");
+        System.out.println(user.getUsername());
+//        textcode
+//        databasesess dbs=new databasesess();
+//        dbs.aaa("斯卡布罗");
+//        System.out.println(dbs.findmusicnamelike("斯卡布罗"));
 
 
 
@@ -292,6 +293,44 @@ public class databasesess
         }
         return alist;
 
+    }
+
+    public  int insertmusicinfo(Music music)
+    {
+
+
+        Statement st;
+        ResultSet result;
+        int count=count("music");
+        count++;
+
+
+
+        String sql=String.format("insert into music values('%s', '%s', %d, '%s', '%s', %d,'ddd')",music.getName(),music.getSinger(),count,music.getMusictype(),music.getEdition(),music.getAuthorID());
+        try
+        {
+//            sql=new String (sql.getBytes("utf-8"),"ISO-8859-1");
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
+
+        try
+        {
+            st=con.createStatement();
+            st.executeUpdate(sql);
+
+            System.out.println("success setuserinfo");
+            return 0;
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     public int count(String shet)

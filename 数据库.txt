@@ -34,7 +34,7 @@ create table comments
 (
 	commentID	int	not null	primary key	check(commentID >= 0),
 	comment	nvarchar(300)	not null,
-	commenttime	datetime2	not null,
+	commenttime	datetime	not null,
 	musicID	int	not null	check(musicID >= 0),
 	accountID	int	not null	check(accountID >= 0),
 );
