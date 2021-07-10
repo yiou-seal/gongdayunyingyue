@@ -46,9 +46,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
-  <component name="RunManager" selected="Application.CatServer">
+  <component name="RunManager" selected="Application.CommandPraser">
     <configuration name="CatBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cat.function.CatBean" />
       <module name="CatServer" />
@@ -75,6 +75,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CommandPraser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cat.server.CommandPraser" />
+      <module name="CatServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cat.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="databasesess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="database.databasesess" />
       <module name="CatServer" />
@@ -88,15 +101,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,11 +116,13 @@
       <item itemvalue="Application.CatServer" />
       <item itemvalue="Application.databasesess" />
       <item itemvalue="Application.CatBean" />
+      <item itemvalue="Application.CommandPraser" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CatServer" />
+        <item itemvalue="Application.CommandPraser" />
         <item itemvalue="Application.databasesess" />
+        <item itemvalue="Application.CatServer" />
         <item itemvalue="Application.CatBean" />
       </list>
     </recent_temporary>
@@ -146,6 +159,7 @@
       <workItem from="1625799877197" duration="4571000" />
       <workItem from="1625823116639" duration="12125000" />
       <workItem from="1625877223412" duration="13953000" />
+      <workItem from="1625910077909" duration="3094000" />
     </task>
     <servers />
   </component>
@@ -193,6 +207,26 @@
           <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
           <line>155</line>
           <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/databasesess.java</url>
+          <line>272</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/databasesess.java</url>
+          <line>271</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/databasesess.java</url>
+          <line>323</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>341</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

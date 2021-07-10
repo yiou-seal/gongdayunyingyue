@@ -4,6 +4,7 @@ import database.entity.Entityfather;
 import database.entity.UsersEntity;
 
 import javax.xml.registry.infomodel.User;
+import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -48,7 +49,19 @@ public class databasesess
 //        databasesess dbs=new databasesess();
 //        dbs.insertuserinfo(new UsersEntity("2$1$3$6$4$5$"));
         //ceshi
+//        textcode
+//        databasesess dbs=new databasesess();
+//        dbs.insertuserinfo(new UsersEntity("臧天昊$224$3$6$4$5$"));
+//        UsersEntity user=dbs.getuserinfo("224");
+//        System.out.println(user.getUsername());
+//        textcode
         databasesess dbs=new databasesess();
+        dbs.aaa("斯卡布罗");
+        System.out.println(dbs.findmusicnamelike("斯卡布罗"));
+
+
+
+
 
 
     }
@@ -58,7 +71,7 @@ public class databasesess
         try
         {
             String driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-            String dbURL="jdbc:sqlserver://LAPTOP-U0GIVCOU\\ZANG;database=musicgwydb?characterEncoding=UTF-8";
+            String dbURL="jdbc:sqlserver://LAPTOP-U0GIVCOU\\ZANG;database=musicgwydb";
             String userName="admin";
             String userPwd="1234";
             Class.forName(driverName);
@@ -134,8 +147,10 @@ public class databasesess
         return true;
     }
 
+
     public  int insertuserinfo(UsersEntity user)
     {
+
 
         Statement st;
         ResultSet result;
@@ -144,7 +159,18 @@ public class databasesess
 
 
 
+//        String sql="INSERT INTO users VALUES(N'"+user.getUsername()+"',"+user.getUserId()+",'"+user.getSex()+"','"+user.getPassword()+"','"+user.getEmail()+"','"+user.getTelenumber()+"','"+"正常"+"')";
         String sql="INSERT INTO users VALUES('"+user.getUsername()+"',"+user.getUserId()+",'"+user.getSex()+"','"+user.getPassword()+"','"+user.getEmail()+"','"+user.getTelenumber()+"','"+"正常"+"')";
+        try
+        {
+//            sql=new String (sql.getBytes("utf-8"),"ISO-8859-1");
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
 
         try
         {
@@ -238,7 +264,7 @@ public class databasesess
 
     }
 
-    public ArrayList<String> findmusicnamelike(String value)//value自己加单引号
+    public ArrayList<String> findmusicnamelike(String value)
     {
 
         Statement st;
@@ -291,6 +317,11 @@ public class databasesess
         }
         return 0;
 
+    }
+
+    public void aaa(String a)
+    {
+        System.out.println(a);
     }
 }
 

@@ -152,7 +152,7 @@ public class CommandPraser
             target.add(bean.getName());
             serverBean.setClients(target);
             serverBean.setTo(bean.getTo()); // 文件目的地
-            serverBean.setFileName(".mp3"); // 文件名称
+            serverBean.setFileName(""+bean.getFileName()+".mp3"); // 文件名称
             serverBean.setIp(bean.getIp());
             serverBean.setPort(bean.getPort());
             serverBean.setName(bean.getName()); // 接收的客户名称
@@ -335,5 +335,19 @@ public class CommandPraser
         serverBean.setTimer(bean.getTimer());
         serverBean.setInfo(strinfo);
         cc.sendMessage(serverBean);
+    }
+
+    public static void aaa(String a)
+    {
+        System.out.println(a);
+    }
+
+    public static void main(String [] args)
+    {
+        String a="斯卡布罗";
+
+        aaa(a);
+
+
     }
 }
