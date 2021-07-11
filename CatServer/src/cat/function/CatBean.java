@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.text.SimpleAttributeSet;
 
 public class CatBean implements Serializable {
 	
-	//×Ö·ûÊôÐÔ
+	//ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
 	private SimpleAttributeSet attributeSet;
 
 	public SimpleAttributeSet getAttributeSet() {
@@ -30,9 +29,9 @@ public class CatBean implements Serializable {
 	public void setIcon(Icon icon) {
 		this.icon = icon;
 	}
-	private int type; // 1Ë½ÁÄ 0ÉÏÏÂÏß¸üÐÂ -1ÏÂÏßÇëÇó 2ÇëÇó·¢ËÍÎÄ¼þ 3.È·¶¨½ÓÊÕÎÄ¼þ
+	private int type; // 1Ë½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½ -1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ 3.È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 
-	private HashSet<String> clients; // ´æ·ÅÑ¡ÖÐµÄ¿Í»§
+	private HashSet<String> clients; // ï¿½ï¿½ï¿½Ñ¡ï¿½ÐµÄ¿Í»ï¿½
 
 	private HashSet<String> to;//send
 	
@@ -42,7 +41,7 @@ public class CatBean implements Serializable {
 
 	private String timer;//send
 
-	private String name;//id
+	private String userid;//id
 
 	private String fileName;
 
@@ -59,7 +58,7 @@ public class CatBean implements Serializable {
 		this.type = 0;
 		this.info = "";
 		this.timer = "";
-		this.name = "";
+		this.userid = "";
 		this.fileName = "";
 		this.wantsendto = "";
 		this.size = 0;
@@ -122,12 +121,12 @@ public class CatBean implements Serializable {
 		this.timer = timer;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getIp() {
@@ -174,7 +173,7 @@ public class CatBean implements Serializable {
 				"#" +
 				timer + "" +
 				"#" +
-				name + "" +
+				userid + "" +
 				"#" +
 				fileName + "" +
 				"#" +
@@ -193,7 +192,7 @@ public class CatBean implements Serializable {
 		this.type = Integer.parseInt(spstr[0]);
 		this.info = spstr[1];
 		this.timer = spstr[2];
-		this.name = spstr[3];
+		this.userid = spstr[3];
 		this.fileName = spstr[4];
 		this.wantsendto = spstr[5];
 		this.size =  Integer.parseInt(spstr[6]);

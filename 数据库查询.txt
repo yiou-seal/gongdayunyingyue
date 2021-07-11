@@ -1,0 +1,35 @@
+insert into music values("蜜雪冰城甜蜜蜜", "小雪人", 256, "流行", "蜜雪冰城", 1234);
+insert into musicsheet values(3, "洗脑歌", 1, 2021-12-21 21:21:21, 1234);
+insert into feedback values(200, "你是大傻逼", 2021-12-20 21:21:21, "已阅", 5, 1234);
+insert into comments values(12, "你爱我，我不爱你，因为你长得离奇", 2021-12-21 22:21:21, 256, 123);
+insert into madeup values(3, 256);
+insert into chat values(51, 123, 1234, "你的歌单真好听",  2021-12-21 22:22:21);
+
+//基本功能
+select * from music where title like '%蜜%'
+select * from music where singer like '%雪%'
+select * from music where musictype like '%流行%'
+select * from music where edition like '%城%'
+select * from music where authorID = 1234
+select * from music where musicID = 256
+select * from musicsheet where sheetname like '%歌%'
+select * from chat where msg like '%听%'
+select * from accounts where accountname like '%冰%'
+select * from accounts where gender like '%女%'
+select * from accounts where accountID = 1234
+select * from accounts where accstatue = '封禁'
+select * from feedback where fdbk like '你'
+select * from feedback where fdbkstatue = '未处理'
+select * from feedback where accountID = 123
+select * from comments where commentID = 5
+
+
+//涉及到时间
+select * from chat where DateDiff(dd, msgtime, getdate()) = 0 //查找当天聊天记录 
+select * from feedback where DateDiff(dd, fdbktime, getdate()) = 0 //查找当天反馈记录
+select * from feedback where DateDiff(dd, fdbktime, getdate()) <= 3 //查找近三天反馈记录
+
+//附加功能
+select * from music order by rand() limit 10 //随机找十首歌听
+select * from accounts order by rand() limit 10 //随机推荐10个好友
+

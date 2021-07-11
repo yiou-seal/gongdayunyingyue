@@ -41,11 +41,11 @@ create table comments
 
 create table musicsheet
 (
-	sheetID	int	not null	primary key	check(sheetID >= 0),
-	sheetname	nvarchar(20)	not null default '新建歌单',
-	musicnum	int	not null	check(musicnum >= 0),
-	sheettime	datetime2	not null,
-	accountID	int	not null	check(accountID >= 0),
+    sheetID	int	not null	primary key	check(sheetID >= 0),
+    sheetname	nvarchar(20)	not null default N'新建歌单',
+    musicnum	int	not null	check(musicnum >= 0),
+    sheettime	datetime2	not null,
+    accountID	int	not null	check(accountID >= 0),
 );
 
 create table administrator

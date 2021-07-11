@@ -163,24 +163,24 @@ public class CatServer
                         { // ����
                             // ��¼���߿ͻ����û����Ͷ˿���clientbean��
                             CatClientBean cbean = new CatClientBean();
-                            cbean.setName(bean.getName());
+                            cbean.setName(bean.getUserid());
                             cbean.setSocket(clientthis);
                             cbean.setThreadname(Thread.currentThread().getName());
                             cbean.setIp(bean.getIp());
                             this.ipthis= bean.getIp();
 
                             // ��������û�
-                            onlines.put(bean.getName(), cbean);
+                            onlines.put(bean.getUserid(), cbean);
 
                             new Thread()
                             {
                                 public void run()
                                 {
-                                    myListmodel.addElement(bean.getName());
+                                    myListmodel.addElement(bean.getUserid());
                                     Object[] data = new Object[3];
 
-                                    data[0] = (bean.getName());
-                                    data[1] = (onlines.get(bean.getName()).getSocket().getLocalSocketAddress().toString());
+                                    data[0] = (bean.getUserid());
+                                    data[1] = (onlines.get(bean.getUserid()).getSocket().getLocalSocketAddress().toString());
                                     data[2] = (CatUtil.getTimer());
 
                                     defaultTableModel.addRow(data);//��¼���û�����ip,ʱ�䣬�ӵ�����ı���
@@ -195,9 +195,9 @@ public class CatServer
                             CatBean serverBean = new CatBean();
                             serverBean.setType(0);
                             serverBean.setInfo(bean.getTimer() + "  "
-                                    + bean.getName() + "������");
+                                    + bean.getUserid() + "������");
                             // Ѱ�Һ����б�
-                            friends = dbsession.getfriendname(bean.getName());
+                            friends = dbsession.getfriendid(bean.getUserid());
                             //�ҳ����ߵĺ���
                             getonlinefriends();
                             //onlinefrind.addAll(onlines.keySet());
@@ -229,19 +229,19 @@ public class CatServer
                                 e.printStackTrace();
                             }
 
-                            onlines.remove(bean.getName());
+                            onlines.remove(bean.getUserid());
                             new Thread()
                             {
                                 public void run()
                                 {
                                     for (int i = 0; i < defaultTableModel.getRowCount(); i++)
                                     {
-                                        if (defaultTableModel.getValueAt(i, 0).equals(bean.getName()))
+                                        if (defaultTableModel.getValueAt(i, 0).equals(bean.getUserid()))
                                         {
                                             defaultTableModel.removeRow(i);
                                         }
                                     }
-                                    myListmodel.removeElement(bean.getName());
+                                    myListmodel.removeElement(bean.getUserid());
                                     serverView.list.setModel(myListmodel);
 
                                 }
@@ -251,7 +251,7 @@ public class CatServer
                             // ��ʣ�µ������û����������뿪��֪ͨ
                             CatBean serverBean2 = new CatBean();
                             serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
-                                    + bean.getName() + "" + " ������");
+                                    + bean.getUserid() + "" + " ������");
                             serverBean2.setType(0);
 
                             //�ҳ����ߵĺ���
@@ -419,7 +419,7 @@ public class CatServer
             serverBean.setType(1);
             serverBean.setClients(bean.getClients());//Ŀ���û�
             serverBean.setInfo(bean.getInfo());
-            serverBean.setName(bean.getName());
+            serverBean.setUserid(bean.getUserid());
             if (bean.getAttributeSet() != null)
             {
                 serverBean.setAttributeSet(bean.getAttributeSet());

@@ -40,7 +40,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/database/entity" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../接口协议.txt" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -101,6 +101,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.CatServer" />
       <item itemvalue="Application.databasesess" />
@@ -110,8 +121,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CatServer" />
-        <item itemvalue="Application.CommandPraser" />
         <item itemvalue="Application.databasesess" />
+        <item itemvalue="Application.CommandPraser" />
         <item itemvalue="Application.CatBean" />
       </list>
     </recent_temporary>
@@ -154,6 +165,9 @@
       <workItem from="1625919412164" duration="1353000" />
       <workItem from="1625921221566" duration="2753000" />
       <workItem from="1625924129759" duration="1916000" />
+      <workItem from="1625971034105" duration="9581000" />
+      <workItem from="1625994661968" duration="4540000" />
+      <workItem from="1626001988514" duration="10046000" />
     </task>
     <servers />
   </component>
@@ -169,7 +183,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>278</line>
+          <line>374</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -179,27 +193,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>289</line>
+          <line>385</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>294</line>
+          <line>390</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>298</line>
+          <line>394</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>313</line>
+          <line>409</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>128</line>
+          <line>205</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">

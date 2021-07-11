@@ -6,11 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,16 +22,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ServerView extends JFrame{
 	private JPanel contentPane;
@@ -60,8 +52,8 @@ public class ServerView extends JFrame{
 	}		
 
 	public void  init() {
-		Font font =new Font("ËÎÌå",22,16);
-		setTitle("·þÎñÆ÷¼òÒ×¹ÜÀí³ÌÐò");
+		Font font =new Font("ï¿½ï¿½ï¿½ï¿½",22,16);
+		setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		setFont(font);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(310, 100, 789, 538);
@@ -91,7 +83,7 @@ public class ServerView extends JFrame{
 
 
 		scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new TitledBorder(null, "·þÎñÆ÷ÔÚÏßÓÃ»§ÁÐ±í"
+		scrollPane.setViewportBorder(new TitledBorder(null, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ð±ï¿½"
 				+ "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		online_panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -110,7 +102,7 @@ public class ServerView extends JFrame{
 
 		send_panel = new JPanel();
 		send_panel.setBounds(185, 10, 588, 376);
-		send_panel.setBorder(BorderFactory.createTitledBorder("ÔÚÏßÓÃ»§ÐÅÏ¢ÁÐ±í"));
+		send_panel.setBorder(BorderFactory.createTitledBorder("ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½Ð±ï¿½"));
 		contentPane.add(send_panel);
 		send_panel.setLayout(new BorderLayout(0, 0));
 		
@@ -123,7 +115,7 @@ public class ServerView extends JFrame{
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		button = new JButton("·¢ËÍ¸øËùÓÐÔÚÏßÓÃ»§");
+		button = new JButton("ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -141,10 +133,10 @@ public class ServerView extends JFrame{
 		serverBean.setInfo(text);
 		serverBean.setType(1);
 		serverBean.setTimer(CatUtil.getTimer());
-		serverBean.setName("·þÎñÆ÷");
+		serverBean.setUserid("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		if(text.equals("")){
-			JOptionPane.showMessageDialog(ServerView.this, "²»ÄÜ·¢ËÍ¿ÕÏûÏ¢");
+			JOptionPane.showMessageDialog(ServerView.this, "ï¿½ï¿½ï¿½Ü·ï¿½ï¿½Í¿ï¿½ï¿½ï¿½Ï¢");
 			return;
 		}
 
@@ -174,7 +166,7 @@ public class ServerView extends JFrame{
 //		try
 //		{
 //			Runtime runtime = Runtime.getRuntime();
-//			String[] command = {"D:\\´óÈý\\Èí¹¤¿ÎÉè\\tcp\\send.exe","C:\\Users\\zang\\Music\\¾«ÖÒ±¨¹ú.mp3","8888"};
+//			String[] command = {"D:\\ï¿½ï¿½ï¿½ï¿½\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\\tcp\\send.exe","C:\\Users\\zang\\Music\\ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½.mp3","8888"};
 //			Process process = runtime.exec(command);
 //
 //			int exitcode = process.waitFor();
