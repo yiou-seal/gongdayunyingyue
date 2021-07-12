@@ -98,7 +98,8 @@ public class Comments extends Entityfather {
       this.setCommentID(result.getInt("commentID"));
       this.setComment(result.getString("comment"));
       this.setCommenttime(result.getTimestamp("commenttime"));
-      this.setMusicID(result.getInt("comments.musicID"));
+      //this.setMusicID(result.getInt("comments.musicID"));
+      this.setMusicID(result.getInt("musicID"));
       this.setAccountID(result.getInt("accountID"));
 
   }

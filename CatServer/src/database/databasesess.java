@@ -568,6 +568,40 @@ public class databasesess
         return commentsArrayList;
     }
 
+    public ArrayList<Comments> getallcommend()
+    {
+
+
+        Statement st;
+        ResultSet result;
+
+
+        DateFormat sdf = new SimpleDateFormat(timeformat);
+        String sql = "select * from comments order by commenttime desc ";
+        ArrayList<Comments> commentsArrayList = new ArrayList<>();
+        try
+        {
+            st = con.createStatement();
+            result = st.executeQuery(sql);
+            int col = result.getMetaData().getColumnCount();
+            System.out.println("success getuserinfo");
+
+            while (result.next())
+            {
+                Comments comments = new Comments();
+                comments.setvalue(result);
+                commentsArrayList.add(comments);
+                System.out.println("findby");
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+
+        }
+        return commentsArrayList;
+    }
+
     public int insertsheetinfo(Musicsheet musicsheet)
     {
 

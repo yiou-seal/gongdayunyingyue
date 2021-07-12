@@ -8,6 +8,7 @@ import database.entity.Music;
 import database.entity.Musicsheet;
 import database.entity.UsersEntity;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class CommandPraser
 {
+    public static final String musicPath = "d:\\gdyunyingyue\\";
     private databasesess dbsession;
 
     public CommandPraser(databasesess dbsession)
@@ -204,7 +206,7 @@ public class CommandPraser
         try
         {
             Runtime runtime = Runtime.getRuntime();
-            String[] command = {"D:\\大三\\软工课设\\tcp\\send.exe", "d:\\gdyunyingyue\\"+bean.getFileName()+".mp3", "8888"};
+            String[] command = {"D:\\大三\\软工课设\\tcp\\send.exe", musicPath +bean.getFileName()+".mp3", "8888"};
             Process process = runtime.exec(command);
 
 
@@ -225,6 +227,24 @@ public class CommandPraser
             cc.sendMessagewithsocket(serverBean);
             int exitcode = process.waitFor();
             System.out.println("returnfff " + exitcode);
+
+            serverBean.setType(4);
+            serverBean.setClients(target);
+            serverBean.setTo(bean.getTo()); // 文件目的地
+            serverBean.setFileName(""+bean.getFileName()+".mp3"); // 文件名称
+            serverBean.setIp(bean.getIp());
+            serverBean.setPort(bean.getPort());
+            serverBean.setUserid(bean.getUserid()); // 接收的客户名称
+            serverBean.setTimer(bean.getTimer());
+            if (exitcode==0)
+            {
+                serverBean.setInfo("0");
+            }
+            else
+            {
+                serverBean.setInfo("-1");
+            }
+            cc.sendMessagewithsocket(serverBean);
         } catch (Exception e)
         {
             System.out.println(e);
@@ -241,8 +261,17 @@ public class CommandPraser
             Process process = runtime.exec(command);
 
             int exitcode = process.waitFor();
+            if (exitcode==0)
+            {
+                Music music=new Music(bean.getInfo());
+                music.setAuthorID(Integer.parseInt(bean.getUserid()));
+                music.setFileplace(music.getName()+".mp3");
+                dbsession.insertmusicinfo(new Music(bean.getInfo()));
+                File oldName = new File(musicPath+bean.getFileName());
+                oldName.renameTo(new File(musicPath+music.getName()));
+                //重名情况待改/////////////////////////////////////////
+            }
             System.out.println("returnfff " + exitcode);
-            dbsession.insertmusicinfo(new Music(bean.getInfo()));
             res=1;
 
         } catch (Exception e)
@@ -265,7 +294,7 @@ public class CommandPraser
         serverBean.setUserid(bean.getUserid()); // 接收的客户名称
         serverBean.setTimer(bean.getTimer());
         // 通知文件来源的客户，对方确定接收文件
-        cc.sendMessage(serverBean);
+        //cc.sendMessage(serverBean);
     }
 
 
