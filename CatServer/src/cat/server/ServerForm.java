@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -27,7 +26,7 @@ import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
 
-public class ServerView extends JFrame{
+public class ServerForm extends JFrame{
 	private JPanel contentPane;
 	public  JTable table;
 	private JButton button;
@@ -47,13 +46,13 @@ public class ServerView extends JFrame{
 		this.catServer =catServer;
 	}
 
-	public ServerView() {	
+	public ServerForm() {
 		init();
 	}		
 
 	public void  init() {
-		Font font =new Font("����",22,16);
-		setTitle("���������׹������");
+		Font font =new Font("宋体",22,16);
+		setTitle("服务器端-staff only");
 		setFont(font);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(310, 100, 789, 538);
@@ -62,8 +61,7 @@ public class ServerView extends JFrame{
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(new ImageIcon("images\\fuwu1.jpg").getImage(), 0, 0,
-						getWidth(), getHeight(), null);
+//				g.drawImage(new ImageIcon("images\\fuwu1.jpg").getImage(), 0, 0,getWidth(), getHeight(), null);
 			}
 
 		};
@@ -83,7 +81,7 @@ public class ServerView extends JFrame{
 
 
 		scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new TitledBorder(null, "�����������û��б�"
+		scrollPane.setViewportBorder(new TitledBorder(null, "当前在线用户"
 				+ "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		online_panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -102,7 +100,7 @@ public class ServerView extends JFrame{
 
 		send_panel = new JPanel();
 		send_panel.setBounds(185, 10, 588, 376);
-		send_panel.setBorder(BorderFactory.createTitledBorder("�����û���Ϣ�б�"));
+		send_panel.setBorder(BorderFactory.createTitledBorder("用户信息"));
 		contentPane.add(send_panel);
 		send_panel.setLayout(new BorderLayout(0, 0));
 		
@@ -115,7 +113,7 @@ public class ServerView extends JFrame{
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		button = new JButton("���͸����������û�");
+		button = new JButton("发送给所有在线用户");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,10 +131,10 @@ public class ServerView extends JFrame{
 		serverBean.setInfo(text);
 		serverBean.setType(1);
 		serverBean.setTimer(CatUtil.getTimer());
-		serverBean.setUserid("������");
+		serverBean.setUserid("服务器");
 
 		if(text.equals("")){
-			JOptionPane.showMessageDialog(ServerView.this, "���ܷ��Ϳ���Ϣ");
+			JOptionPane.showMessageDialog(ServerForm.this, "不能发送空消息");
 			return;
 		}
 
