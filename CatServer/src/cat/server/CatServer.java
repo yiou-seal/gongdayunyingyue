@@ -18,7 +18,7 @@ public class CatServer
 {
     private static final char MSGENDCHAR = 0xff;
     DefaultListModel myListmodel = new DefaultListModel<>();
-    private static ServerForm serverView = null;
+    private static ServerView serverView = null;
     private static ServerSocket ss;
     public static HashMap<String, CatClientBean> onlines;//����������Ϣ
     public static Socket asock;
@@ -608,7 +608,7 @@ public class CatServer
 //            System.out.println(e);
 //        }
 
-        serverView = new ServerForm();
+        serverView = new ServerView();
         serverView.setVisible(true);
         CatServer catServer = new CatServer();
         catServer.start();
