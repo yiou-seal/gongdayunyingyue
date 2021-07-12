@@ -158,7 +158,7 @@ public class CommandPraser
             }
             case 30://查看一个好友的歌单
             {
-                //getafriendsheet(cc, bean);
+                getafriendsheet(cc, bean);
 
                 break;
             }
@@ -574,6 +574,42 @@ public class CommandPraser
         serverBean.setUserid(bean.getUserid());
         serverBean.setTimer(bean.getTimer());
         serverBean.setInfo(res+"");
+        cc.sendMessagewithsocket(serverBean);
+    }
+
+    private void getafriendsheet(CatServer.ClientThread cc, CatBean bean)
+    {
+        Music music=new Music();
+        ArrayList<String> result=dbsession.getfriendsheet(bean.getInfo());
+        StringBuilder info= new StringBuilder(new String(""));
+        for (int i=0;i<result.size();i++)
+        {
+            if (i==0)
+            {
+                //System.out.println("aaaaaaaaaa");
+                info.append(result.get(i));
+            }
+
+            else
+            {
+                //System.out.println("ddddddddd");
+                info.append("$").append(result.get(i));
+            }
+
+        }
+        String strinfo=info.toString();
+
+        CatBean serverBean = new CatBean();
+
+        serverBean.setType(30);
+        serverBean.setIcon(bean.getIcon());
+        HashSet<String> target = new HashSet<String>();
+        target.add(bean.getUserid());
+        serverBean.setClients(target);
+        serverBean.setTo(bean.getTo());
+        serverBean.setUserid(bean.getUserid());
+        serverBean.setTimer(bean.getTimer());
+        serverBean.setInfo(strinfo);
         cc.sendMessagewithsocket(serverBean);
     }
 

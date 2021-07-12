@@ -707,7 +707,32 @@ public class databasesess
         }
     }
 
+    public ArrayList<String> getfriendsheet(String userid)
+    {
 
+        String sql = String.format("select * from musicsheet where accountID=%s", userid);
+        ResultSet result;
+        Statement st;
+        ArrayList<String> alist = new ArrayList<String>();
+        try
+        {
+            st = con.createStatement();
+            result = st.executeQuery(sql);
+            System.out.println("success getuserinfo");
+
+            while (result.next())
+            {
+//                et.setvalue(result);
+                alist.add(result.getString("sheetname"));
+                System.out.println("findby");
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return alist;
+    }
 
     public int count(String shet, String col)
     {
