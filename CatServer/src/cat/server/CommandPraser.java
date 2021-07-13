@@ -419,7 +419,7 @@ public class CommandPraser
     {//登录
         UsersEntity user = dbsession.getuserinfo(bean.getUserid());
         UsersEntity thisuser=new UsersEntity(bean.getInfo());
-        boolean result = user.getPassword().equals(thisuser.getPassword());
+        boolean result = user.getPassword().equals(thisuser.getPassword()) && !user.getAccountstate().equals("封禁");
 
         CatBean serverBean = new CatBean();
         serverBean.setType(15);
@@ -461,20 +461,20 @@ public class CommandPraser
     private void searchmusic(CatServer.ClientThread cc, CatBean bean)
     {
         Music music=new Music();
-        ArrayList<String> result=dbsession.findmusicnamelike(bean.getInfo());
+        ArrayList<Music> result=dbsession.findmusicnamelikeReturninfo(bean.getInfo());
         StringBuilder info= new StringBuilder(new String(""));
         for (int i=0;i<result.size();i++)
         {
             if (i==0)
             {
                 //System.out.println("aaaaaaaaaa");
-                info.append(result.get(i));
+                info.append(result.get(i).toString());
             }
 
             else
             {
                 //System.out.println("ddddddddd");
-                info.append("$").append(result.get(i));
+                info.append("|").append(result.get(i).toString());
             }
 
         }

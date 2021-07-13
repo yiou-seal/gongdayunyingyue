@@ -156,6 +156,7 @@ public class UsersEntity extends Entityfather
         this.setSex(result.getString("sex"));
         this.setTelenumber(result.getString("telenumber"));
         this.setEmail(result.getString("email"));
+        this.setAccountstate(result.getString("accountstate"));
     }
 
 

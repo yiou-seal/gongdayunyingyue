@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -26,11 +25,14 @@ import javax.swing.border.TitledBorder;
 import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
+import cat.forms.editCommentForm;
+import database.databasesess;
 
 public class ServerView extends JFrame{
 	private JPanel contentPane;
 	public  JTable table;
-	private JButton button;
+	private JButton buttonsendall;
+	private JButton buttoncomment;
 	private JPanel panel;
 	private JPanel send_panel;
 	public JTextArea textArea;
@@ -42,6 +44,9 @@ public class ServerView extends JFrame{
 	private JScrollPane scrollPane;
 	private CatServer  catServer= null;
 	public static final char MSGENDCHAR = 0xff;
+
+	private editCommentForm commentForm;
+	private databasesess dbs;
 	
 	public void setCatServer(CatServer catServer) {
 		this.catServer =catServer;
@@ -114,8 +119,8 @@ public class ServerView extends JFrame{
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		button = new JButton("发送给所有在线用户");
-		button.addMouseListener(new MouseAdapter() {
+		buttonsendall = new JButton("发送给所有在线用户");
+		buttonsendall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sendAll();
@@ -123,7 +128,18 @@ public class ServerView extends JFrame{
 				textArea.requestFocus();
 			}		
 		});
-		panel.add(button);	
+		panel.add("East",buttonsendall);
+
+		dbs= new databasesess();
+		commentForm=new editCommentForm(dbs);
+		buttoncomment = new JButton("管理评论");
+		buttoncomment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				commentForm.show(true);
+			}
+		});
+		panel.add("West",buttoncomment);
 	}
 	
 	private void sendAll() {

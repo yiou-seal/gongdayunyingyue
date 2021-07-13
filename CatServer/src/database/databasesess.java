@@ -326,6 +326,38 @@ public class databasesess
 
     }
 
+    public ArrayList<Music> findmusicnamelikeReturninfo(String value)
+    {
+
+        Statement st;
+        ResultSet result;
+        String sql = "select * from music where name like '%" + value + "%'";
+        ArrayList<Music> alist = new ArrayList<>();
+        try
+        {
+            st = con.createStatement();
+            result = st.executeQuery(sql);
+            int col = result.getMetaData().getColumnCount();
+
+            System.out.println("success getuserinfo");
+
+            while (result.next())
+            {
+                Music music =new Music();
+//                et.setvalue(result);
+                music.setvalue(result);
+                alist.add(music);
+                System.out.println("findby");
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return alist;
+
+    }
+
     public int insertmusicinfo(Music music)
     {
 
@@ -600,6 +632,86 @@ public class databasesess
 
         }
         return commentsArrayList;
+    }
+
+    public ArrayList<UsersEntity> getalluseinfo()
+    {
+
+
+        Statement st;
+        ResultSet result;
+
+
+        DateFormat sdf = new SimpleDateFormat(timeformat);
+        String sql = "select * from users order by userID desc ";
+        ArrayList<UsersEntity> usersEntityArrayList = new ArrayList<>();
+        try
+        {
+            st = con.createStatement();
+            result = st.executeQuery(sql);
+            int col = result.getMetaData().getColumnCount();
+            System.out.println("success getuserinfo");
+
+            while (result.next())
+            {
+                UsersEntity usersEntity=new UsersEntity();
+                usersEntity.setvalue(result);
+                usersEntityArrayList.add(usersEntity);
+                System.out.println("findby");
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+
+        }
+        return usersEntityArrayList;
+    }
+
+    public int unblockuser(UsersEntity usersEntity)
+    {
+            Statement st;
+            ResultSet result;
+            String sql = String.format("UPDATE users SET accountstate = '正常' WHERE userID = %s",  usersEntity.getUserId());
+
+
+            try
+            {
+                st = con.createStatement();
+                st.executeUpdate(sql);
+
+                System.out.println("success setuserinfo");
+                return 0;
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                return -1;
+            }
+
+    }
+
+    public int blockuser(UsersEntity usersEntity)
+    {
+        Statement st;
+        ResultSet result;
+        String sql = String.format("UPDATE users SET accountstate = '封禁' WHERE userID = %s",  usersEntity.getUserId());
+
+
+        try
+        {
+            st = con.createStatement();
+            st.executeUpdate(sql);
+
+            System.out.println("success setuserinfo");
+            return 0;
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            return -1;
+        }
+
     }
 
     public int insertsheetinfo(Musicsheet musicsheet)

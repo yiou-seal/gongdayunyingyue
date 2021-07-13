@@ -80,7 +80,7 @@ public class Music extends Entityfather {
   @Override
   public String toString()
   {
-    String sb = "" + "$" +
+    String sb =
             name + "" +
             "$" +
             singer + "" +

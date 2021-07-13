@@ -180,10 +180,11 @@ public class CatServer
                                     Object[] data = new Object[3];
 
                                     data[0] = (bean.getUserid());
-                                    data[1] = (onlines.get(bean.getUserid()).getSocket().getLocalSocketAddress().toString());
+//                                    data[1] = (onlines.get(bean.getUserid()).getSocket().getLocalSocketAddress().toString());
+                                    data[1] = (onlines.get(bean.getUserid()).getIp());
                                     data[2] = (CatUtil.getTimer());
 
-                                    defaultTableModel.addRow(data);//��¼���û�����ip,ʱ�䣬�ӵ�����ı���
+                                    defaultTableModel.addRow(data);//把信息添加到界面上
                                     serverView.list.setModel(myListmodel);
                                     serverView.table.setModel(defaultTableModel);
                                 }
