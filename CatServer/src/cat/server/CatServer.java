@@ -79,8 +79,6 @@ public class CatServer
                 // ��ͣ�Ĵӿͻ��˽�����Ϣ
                 while (true)
                 {
-
-
                     int c;
 
                     boolean didRun = false;

@@ -46,7 +46,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.CatServer">
     <configuration name="CatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -179,7 +179,9 @@
       <workItem from="1626083612241" duration="86000" />
       <workItem from="1626083780404" duration="10337000" />
       <workItem from="1626139585621" duration="2021000" />
-      <workItem from="1626142652814" duration="5580000" />
+      <workItem from="1626142652814" duration="7453000" />
+      <workItem from="1626151196621" duration="3249000" />
+      <workItem from="1626159173358" duration="6201000" />
     </task>
     <servers />
   </component>
@@ -193,18 +195,14 @@
           <properties class="com.microsoft.sqlserver.jdbc.SQLServerException" package="com.microsoft.sqlserver.jdbc" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="64" />
-        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>403</line>
+          <line>404</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>414</line>
+          <line>415</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -224,25 +222,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>263</line>
+          <line>264</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>273</line>
+          <line>274</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>266</line>
+          <line>267</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>258</line>
+          <line>259</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>261</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
       </breakpoints>
+      <breakpoints-defaults>
+        <breakpoint suspend="THREAD" type="java-line" />
+      </breakpoints-defaults>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>

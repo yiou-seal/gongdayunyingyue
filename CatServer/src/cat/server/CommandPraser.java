@@ -256,8 +256,9 @@ public class CommandPraser
         int res=0;
         try
         {
+            String targetip=bean.getIp();
             Runtime runtime = Runtime.getRuntime();
-            String[] command = {"D:\\大三\\软工课设\\tcp\\receive.exe", cc.getIpthis(), "8888"};
+            String[] command = {"D:\\大三\\软工课设\\tcp\\receive.exe", targetip, "8888"};
             Process process = runtime.exec(command);
 
             int exitcode = process.waitFor();
