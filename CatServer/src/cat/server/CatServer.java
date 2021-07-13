@@ -258,8 +258,8 @@ public class CatServer
                             //�ҳ����ߵĺ���
                             getonlinefriends();
                             //onlinefrind.addAll(onlines.keySet());
-                            serverBean.setClients(onlinefrind);
-                            sendMessage(serverBean);
+                            serverBean2.setClients(onlinefrind);
+                            sendMessage(serverBean2);
 
 //							HashSet<String> set = new HashSet<String>();
 //							set.addAll(onlines.keySet());
@@ -280,12 +280,12 @@ public class CatServer
                 }
             } catch (IOException e)
             {
+                unexpectexit();
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 //} catch (ClassNotFoundException e)
                 //{
                 // TODO Auto-generated catch block
-                e.printStackTrace();
             } finally
             {
                 close();
@@ -458,21 +458,16 @@ public class CatServer
                         oos.flush();
                     } catch (IOException e)
                     {
+                        unexpectexit();
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
                 }
             }
         }
 
         void sendMessagewithsocket(CatBean serverBean)
         {
-
-
-
-
-
                     //ObjectOutputStream oos;
                     DataOutputStream oos;
                     try
@@ -484,6 +479,7 @@ public class CatServer
                         oos.flush();
                     } catch (IOException e)
                     {
+                        unexpectexit();
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
@@ -507,6 +503,7 @@ public class CatServer
                     oos.flush();
                 } catch (IOException e)
                 {
+                    unexpectexit();
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -558,6 +555,40 @@ public class CatServer
         public void setIpthis(String ipthis)
         {
             this.ipthis = ipthis;
+        }
+
+        private void unexpectexit()
+        {
+            onlines.remove(bean.getUserid());
+            new Thread()
+            {
+                public void run()
+                {
+                    for (int i = 0; i < defaultTableModel.getRowCount(); i++)
+                    {
+                        if (defaultTableModel.getValueAt(i, 0).equals(bean.getUserid()))
+                        {
+                            defaultTableModel.removeRow(i);
+                        }
+                    }
+                    myListmodel.removeElement(bean.getUserid());
+                    serverView.list.setModel(myListmodel);
+
+                }
+
+                ;
+            }.start();
+            // ��ʣ�µ������û����������뿪��֪ͨ
+            CatBean serverBean2 = new CatBean();
+            serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
+                    + bean.getUserid() + "" + " ������");
+            serverBean2.setType(0);
+
+            //�ҳ����ߵĺ���
+            getonlinefriends();
+            //onlinefrind.addAll(onlines.keySet());
+            serverBean2.setClients(onlinefrind);
+            sendMessage(serverBean2);
         }
     }
 
