@@ -286,7 +286,7 @@ public class CatServer
                 //{
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-                
+
                 onlines.remove(bean.getUserid());
                 new Thread()
                 {
