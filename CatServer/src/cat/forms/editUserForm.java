@@ -18,6 +18,7 @@ public class editUserForm extends MouseAdapter
     JList list2 = null;
     JButton btnfengjin = new JButton("封禁");
     JButton btnjiefeng = new JButton("解封");
+    JButton btnqiangzhixiaxian = new JButton("下线");
     DataModel mode1 = null;
     DataModel mode2 = null;
     String[] s = {"用户129：这个不好。(2021-02-21 08:21:28)", "用户137：这个好。(2021-02-21 09:23:48)", "用户97：这个一般。(2021-02-21 09:25:43)", "用户177：别吵了。(2021-02-22 09:13:18)"};
@@ -48,9 +49,10 @@ public class editUserForm extends MouseAdapter
         JScrollPane scrollPane = new JScrollPane(list2);
         contentPane.add(scrollPane);
 
-        paneltwobutton=new JPanel(new GridLayout(1,2));
+        paneltwobutton=new JPanel(new GridLayout(1,3));
         paneltwobutton.add(btnfengjin);
         paneltwobutton.add(btnjiefeng);
+        paneltwobutton.add(btnqiangzhixiaxian);
         scrollPane.setColumnHeaderView(paneltwobutton);
         mode1.refresh();
         mode2.removeAllElements();
@@ -87,7 +89,22 @@ public class editUserForm extends MouseAdapter
                     int res=dbsession.unblockuser(listModel.get(i));
                     if (res!=0)
                     {
-                        JOptionPane.showMessageDialog(null,"封禁"+listModel.get(i).getUserId()+"失败，该用户可能已不存在","失败",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"解禁"+listModel.get(i).getUserId()+"失败，该用户可能已不存在","失败",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                chushihua();
+            }
+        });
+        btnqiangzhixiaxian.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DataModel listModel = (DataModel) list2.getModel();
+                for (int i=0;i<listModel.size();i++)
+                {
+                    int res=dbsession.blockuser(listModel.get(i));
+                    if (res!=0)
+                    {
+                        JOptionPane.showMessageDialog(null,"解禁"+listModel.get(i).getUserId()+"失败，该用户可能已不存在","失败",JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 chushihua();
@@ -132,8 +149,6 @@ public class editUserForm extends MouseAdapter
         }
         if (e.getSource() == btnfengjin)
         {
-
-
         }
     }
 

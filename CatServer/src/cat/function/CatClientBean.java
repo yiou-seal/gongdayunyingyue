@@ -6,7 +6,7 @@ public class CatClientBean {
 
 	private String name;
 	private Socket socket;
-	private String threadname;
+	private Thread threadname;
 	private String ip;
 
 	public String getIp()
@@ -19,12 +19,12 @@ public class CatClientBean {
 		this.ip = ip;
 	}
 
-	public void setThreadname(String threadname)
+	public void setThreadname(Thread threadname)
 	{
 		this.threadname = threadname;
 	}
 
-	public String getThreadname()
+	public Thread getThreadname()
 	{
 		return threadname;
 	}

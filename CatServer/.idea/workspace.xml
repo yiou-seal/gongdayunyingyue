@@ -114,19 +114,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.CatServer" />
       <item itemvalue="Application.databasesess" />
@@ -191,7 +178,8 @@
       <workItem from="1626078731314" duration="4748000" />
       <workItem from="1626083612241" duration="86000" />
       <workItem from="1626083780404" duration="10337000" />
-      <workItem from="1626139585621" duration="1027000" />
+      <workItem from="1626139585621" duration="2021000" />
+      <workItem from="1626142652814" duration="5580000" />
     </task>
     <servers />
   </component>
@@ -204,6 +192,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="com.microsoft.sqlserver.jdbc.SQLServerException" package="com.microsoft.sqlserver.jdbc" />
           <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="64" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>

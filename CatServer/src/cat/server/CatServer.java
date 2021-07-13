@@ -37,7 +37,7 @@ public class CatServer
             onlines = new HashMap<String, CatClientBean>();
 
             defaultTableModel.addColumn("�û���");
-            defaultTableModel.addColumn("����ip��ַ");
+            defaultTableModel.addColumn("用户ipַ");
             defaultTableModel.addColumn("��½ʱ��");
         } catch (IOException e)
         {
@@ -107,7 +107,6 @@ public class CatServer
 
                     System.out.println(receive);
 
-
                     // ��ȡ�ӿͻ��˽��յ���catbean��Ϣ
 //					ois = new ObjectInputStream(client.getInputStream());
 //					bean = (CatBean) ois.readObject();
@@ -165,7 +164,7 @@ public class CatServer
                             CatClientBean cbean = new CatClientBean();
                             cbean.setName(bean.getUserid());
                             cbean.setSocket(clientthis);
-                            cbean.setThreadname(Thread.currentThread().getName());
+                            cbean.setThreadname(Thread.currentThread());
                             cbean.setIp(bean.getIp());
                             this.ipthis= bean.getIp();
 
@@ -184,7 +183,7 @@ public class CatServer
                                     data[1] = (onlines.get(bean.getUserid()).getIp());
                                     data[2] = (CatUtil.getTimer());
 
-                                    defaultTableModel.addRow(data);//把信息添加到界面上
+                                    defaultTableModel.addRow(data);//把信息添加到界面右侧详细信息中
                                     serverView.list.setModel(myListmodel);
                                     serverView.table.setModel(defaultTableModel);
                                 }
@@ -276,6 +275,10 @@ public class CatServer
                             cp.runCommand(this, bean);
                             break;
                         }
+                    }
+                    if (Thread.currentThread().isInterrupted())
+                    {
+                        unexpectexit();
                     }
                 }
             } catch (IOException e)
@@ -643,8 +646,8 @@ public class CatServer
         serverView = new ServerView();
         serverView.setVisible(true);
         CatServer catServer = new CatServer();
-        catServer.start();
         serverView.setCatServer(catServer);
+        catServer.start();
 
 
     }
