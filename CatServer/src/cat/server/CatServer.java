@@ -286,6 +286,37 @@ public class CatServer
                 //{
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                
+                onlines.remove(bean.getUserid());
+                new Thread()
+                {
+                    public void run()
+                    {
+                        for (int i = 0; i < defaultTableModel.getRowCount(); i++)
+                        {
+                            if (defaultTableModel.getValueAt(i, 0).equals(bean.getUserid()))
+                            {
+                                defaultTableModel.removeRow(i);
+                            }
+                        }
+                        myListmodel.removeElement(bean.getUserid());
+                        serverView.list.setModel(myListmodel);
+
+                    }
+
+                    ;
+                }.start();
+                // ��ʣ�µ������û����������뿪��֪ͨ
+                CatBean serverBean2 = new CatBean();
+                serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
+                        + bean.getUserid() + "" + " ������");
+                serverBean2.setType(0);
+
+                //�ҳ����ߵĺ���
+                getonlinefriends();
+                //onlinefrind.addAll(onlines.keySet());
+                serverBean.setClients(onlinefrind);
+                sendMessage(serverBean);
             } finally
             {
                 close();
@@ -432,7 +463,7 @@ public class CatServer
 
 
         // ��ѡ�е��û���������
-        void sendMessage(CatBean serverBean)
+        void sendMessage(CatBean serverBean) throws IOException
         {
             // ����ȡ�����е�values
             Set<String> cbs = onlines.keySet();
@@ -449,24 +480,24 @@ public class CatServer
                     Socket c = onlines.get(client).getSocket();
                     //ObjectOutputStream oos;
                     DataOutputStream oos;
-                    try
-                    {
+//                    try
+//                    {
                         //oos = new ObjectOutputStream(c.getOutputStream());
                         oos = new DataOutputStream(c.getOutputStream());
                         //oos.writeObject(serverBean);
                         oos.write(bean.toString().getBytes("gbk"));
                         oos.flush();
-                    } catch (IOException e)
-                    {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+//                    } catch (IOException e)
+//                    {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
 
                 }
             }
         }
 
-        void sendMessagewithsocket(CatBean serverBean)
+        void sendMessagewithsocket(CatBean serverBean) throws IOException
         {
 
 
@@ -475,24 +506,24 @@ public class CatServer
 
                     //ObjectOutputStream oos;
                     DataOutputStream oos;
-                    try
-                    {
+//                    try
+//                    {
                         //oos = new ObjectOutputStream(c.getOutputStream());
                         oos = new DataOutputStream(clientthis.getOutputStream());
                         //oos.writeObject(serverBean);
                         oos.write(serverBean.toString().getBytes("gbk"));
                         oos.flush();
-                    } catch (IOException e)
-                    {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+//                    } catch (IOException e)
+//                    {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
 
 
         }
 
         // �����е��û���������
-        private void sendAll(CatBean serverBean)
+        private void sendAll(CatBean serverBean) throws IOException
         {
             Collection<CatClientBean> clients = onlines.values();
             Iterator<CatClientBean> it = clients.iterator();
@@ -500,16 +531,16 @@ public class CatServer
             while (it.hasNext())
             {
                 Socket c = it.next().getSocket();
-                try
-                {
+//                try
+//                {
                     oos = new ObjectOutputStream(c.getOutputStream());
                     oos.writeObject(serverBean);
                     oos.flush();
-                } catch (IOException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+//                } catch (IOException e)
+//                {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
             }
         }
 
