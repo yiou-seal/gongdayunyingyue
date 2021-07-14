@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import static java.lang.Thread.sleep;
+
 public class CommandPraser
 {
     public static final String musicPath = "d:\\gdyunyingyue\\";
@@ -25,7 +27,7 @@ public class CommandPraser
         this.dbsession = dbsession;
     }
 
-    public void runCommand(CatServer.ClientThread cc, CatBean bean)
+    public void runCommand(CatServer.ClientThread cc, CatBean bean) throws InterruptedException
     {
         switch (bean.getType())
         {
@@ -382,8 +384,9 @@ public class CommandPraser
             {
                 currentinfo=fn+"$"+friendname+"$"+"0";
             }
-            friendinfo=friendinfo+"|";
+            friendinfo=friendinfo+"|"+currentinfo;
         }
+        friendinfo=friendinfo.substring(1);
         for (String s:cc.onlinefrind) {
             System.out.println(s);
         }
@@ -398,7 +401,43 @@ public class CommandPraser
         cc.sendMessage(serverBean);
     }
 
-    private void signup(CatServer.ClientThread cc, CatBean bean)
+    public void sendfriendsandmyselfinfo(CatServer.ClientThread cc, CatBean bean) throws InterruptedException
+    {
+        String friendinfo="";
+        for (String fn: cc.friends)
+        {
+            String currentinfo="";
+            String friendname=dbsession.getuserinfo(fn).getUsername();
+            if (cc.onlinefrind.contains(fn))
+            {
+                currentinfo=fn+"$"+friendname+"$"+"1";
+            }
+            else
+            {
+                currentinfo=fn+"$"+friendname+"$"+"0";
+            }
+            friendinfo=friendinfo+"|"+currentinfo;
+        }
+        friendinfo=friendinfo.substring(1);
+        for (String s:cc.onlinefrind) {
+            System.out.println(s);
+        }
+        CatBean serverBean = new CatBean();
+        serverBean.setType(10);//包含好友信息的包
+        //serverBean.setInfo(cc.onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
+        serverBean.setInfo(friendinfo);
+        HashSet<String> target = new HashSet<String>();
+        target.add(bean.getUserid());
+        serverBean.setUserid(bean.getUserid());
+        serverBean.setClients(target);
+        serverBean.setFileName(dbsession.getuserinfo(bean.getUserid()).toString());
+        System.out.println("qiana");
+        sleep(1000);
+        System.out.println("hou");
+        cc.sendMessagewithsocket(serverBean);
+    }
+
+    private void signup(CatServer.ClientThread cc, CatBean bean) throws InterruptedException
     {//注册
         int res = dbsession.insertuserinfo(new UsersEntity(bean.getInfo()));
 
@@ -413,6 +452,7 @@ public class CommandPraser
         serverBean.setTimer(bean.getTimer());
         //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
         serverBean.setInfo(String.valueOf(res));
+        sleep(1000);
         cc.sendMessagewithsocket(serverBean);
     }
 
@@ -521,6 +561,10 @@ public class CommandPraser
 
         }
         String strinfo=info.toString();
+        if (strinfo.equals(""))
+        {
+            strinfo="none";
+        }
 
         CatBean serverBean = new CatBean();
 
@@ -578,7 +622,7 @@ public class CommandPraser
     {
         Comments comments=new Comments(bean.getInfo(),dbsession);
         int res=dbsession.insertcommend(comments);
-
+        System.out.println(comments.getComment());
         CatBean serverBean = new CatBean();
 
         serverBean.setType(21);

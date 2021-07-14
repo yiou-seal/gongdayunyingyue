@@ -51,6 +51,7 @@ public class CatServer
         private Socket clientthis;
         private String ipthis;
         private CatBean bean;
+        private int thisuserid;
         private ObjectInputStream ois;
         private ObjectOutputStream oos;
         databasesess dbsession;
@@ -165,6 +166,7 @@ public class CatServer
                             cbean.setThreadname(Thread.currentThread());
                             cbean.setIp(bean.getIp());
                             this.ipthis= bean.getIp();
+                            this.thisuserid=Integer.parseInt(bean.getUserid());
 
                             // ��������û�
                             onlines.put(bean.getUserid(), cbean);
@@ -204,8 +206,10 @@ public class CatServer
                             sendMessage(serverBean);
 
                             //���淢�Ͱ���������Ϣ�İ�
-
-                            cp.sendfriendsinfo(this,bean);
+                            System.out.println("qian");
+                            sleep(1000);
+                            System.out.println("hou");
+                            cp.sendfriendsandmyselfinfo(this,bean);
 
                             break;
                         }
@@ -279,7 +283,7 @@ public class CatServer
                         unexpectexit();
                     }
                 }
-            } catch (IOException e)
+            } catch (IOException | InterruptedException e)
             {
                 unexpectexit();
                 // TODO Auto-generated catch block
@@ -457,7 +461,7 @@ public class CatServer
                         //oos.writeObject(serverBean);
                         oos.write(bean.toString().getBytes("gbk"));
                         oos.flush();
-                    } catch (IOException e)
+                    } catch (IOException  e)
                     {
                         unexpectexit();
                         // TODO Auto-generated catch block
@@ -560,19 +564,19 @@ public class CatServer
 
         private void unexpectexit()
         {
-            onlines.remove(bean.getUserid());
+            onlines.remove(thisuserid);
             new Thread()
             {
                 public void run()
                 {
                     for (int i = 0; i < defaultTableModel.getRowCount(); i++)
                     {
-                        if (defaultTableModel.getValueAt(i, 0).equals(bean.getUserid()))
+                        if (defaultTableModel.getValueAt(i, 0).equals(thisuserid))
                         {
                             defaultTableModel.removeRow(i);
                         }
                     }
-                    myListmodel.removeElement(bean.getUserid());
+                    myListmodel.removeElement(thisuserid);
                     serverView.list.setModel(myListmodel);
 
                 }
@@ -582,7 +586,7 @@ public class CatServer
             // ��ʣ�µ������û����������뿪��֪ͨ
             CatBean serverBean2 = new CatBean();
             serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
-                    + bean.getUserid() + "" + " ������");
+                    + thisuserid + "" + " ������");
             serverBean2.setType(0);
 
             //�ҳ����ߵĺ���

@@ -136,7 +136,7 @@
     </schema>
     <schema id="30" parent="7" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-07-14.01:29:09.363</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-07-14.23:56:22.630</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="31" parent="7" name="guest">
@@ -229,69 +229,139 @@
       <Type>database-role</Type>
       <AuthType>none</AuthType>
     </role>
-    <table id="48" parent="30" name="comments">
+    <table id="48" parent="30" name="chat">
+      <ObjectId>1925581898</ObjectId>
+      <CreatedTimestamp>2021-07-14.23:56:22.247</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-14.23:56:22.247</ModifiedTimestamp>
+    </table>
+    <table id="49" parent="30" name="comments">
       <ObjectId>1525580473</ObjectId>
       <CreatedTimestamp>2021-07-11.05:59:02.110</CreatedTimestamp>
       <ModifiedTimestamp>2021-07-11.05:59:02.110</ModifiedTimestamp>
     </table>
-    <table id="49" parent="30" name="friends">
+    <table id="50" parent="30" name="friends">
       <ObjectId>885578193</ObjectId>
       <CreatedTimestamp>2021-06-30.06:05:49.840</CreatedTimestamp>
       <ModifiedTimestamp>2021-06-30.06:05:49.840</ModifiedTimestamp>
     </table>
-    <table id="50" parent="30" name="madeup">
+    <table id="51" parent="30" name="madeup">
       <ObjectId>1621580815</ObjectId>
       <CreatedTimestamp>2021-07-11.20:14:58.850</CreatedTimestamp>
       <ModifiedTimestamp>2021-07-11.20:14:58.850</ModifiedTimestamp>
     </table>
-    <table id="51" parent="30" name="music">
+    <table id="52" parent="30" name="music">
       <ObjectId>1205579333</ObjectId>
       <CreatedTimestamp>2021-07-10.02:44:17.167</CreatedTimestamp>
       <ModifiedTimestamp>2021-07-14.01:29:08.397</ModifiedTimestamp>
     </table>
-    <table id="52" parent="30" name="musicsheet">
+    <table id="53" parent="30" name="musicsheet">
       <ObjectId>1301579675</ObjectId>
       <CreatedTimestamp>2021-07-10.02:45:56.043</CreatedTimestamp>
       <ModifiedTimestamp>2021-07-10.02:45:56.043</ModifiedTimestamp>
     </table>
-    <table id="53" parent="30" name="users">
+    <table id="54" parent="30" name="users">
       <ObjectId>581577110</ObjectId>
       <CreatedTimestamp>2021-06-25.03:05:49.440</CreatedTimestamp>
       <ModifiedTimestamp>2021-06-25.03:05:49.440</ModifiedTimestamp>
     </table>
-    <column id="54" parent="48" name="commentID">
+    <column id="55" parent="48" name="msgID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="48" name="comment">
+    <column id="56" parent="48" name="sendID">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="48" name="rcvID">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="48" name="msg">
+      <Position>4</Position>
+      <DataType>nvarchar(300 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="48" name="msgtime">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="60" parent="48" name="PK__chat__A96042C70A0F157F">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>msgID</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="61" parent="48" name="PK__chat__A96042C70A0F157F">
+      <ObjectId>1941581955</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-14.23:56:22.250</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-14.23:56:22.250</ModifiedTimestamp>
+      <ColNames>msgID</ColNames>
+      <UnderlyingIndexName>PK__chat__A96042C70A0F157F</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <check id="62" parent="48" name="CK__chat__msgID__74AE54BC">
+      <ObjectId>1957582012</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-14.23:56:22.250</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-14.23:56:22.250</ModifiedTimestamp>
+      <ColNames>msgID</ColNames>
+      <Predicate>[msgID]&gt;=0</Predicate>
+    </check>
+    <check id="63" parent="48" name="CK__chat__rcvID__76969D2E">
+      <ObjectId>1989582126</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-14.23:56:22.250</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-14.23:56:22.250</ModifiedTimestamp>
+      <ColNames>rcvID</ColNames>
+      <Predicate>[rcvID]&gt;=0</Predicate>
+    </check>
+    <check id="64" parent="48" name="CK__chat__sendID__75A278F5">
+      <ObjectId>1973582069</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-07-14.23:56:22.250</CreatedTimestamp>
+      <ModifiedTimestamp>2021-07-14.23:56:22.250</ModifiedTimestamp>
+      <ColNames>sendID</ColNames>
+      <Predicate>[sendID]&gt;=0</Predicate>
+    </check>
+    <column id="65" parent="49" name="commentID">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="49" name="comment">
       <Position>2</Position>
       <DataType>nvarchar(300 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="56" parent="48" name="commenttime">
+    <column id="67" parent="49" name="commenttime">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="48" name="musicID">
+    <column id="68" parent="49" name="musicID">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="48" name="accountID">
+    <column id="69" parent="49" name="accountID">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="59" parent="48" name="PK__comments__CDDE91BD7AF71850">
+    <index id="70" parent="49" name="PK__comments__CDDE91BD7AF71850">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>commentID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="48" name="PK__comments__CDDE91BD7AF71850">
+    <key id="71" parent="49" name="PK__comments__CDDE91BD7AF71850">
       <ObjectId>1541580530</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.05:59:02.157</CreatedTimestamp>
@@ -300,7 +370,7 @@
       <UnderlyingIndexName>PK__comments__CDDE91BD7AF71850</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="61" parent="48" name="CK__comments__accoun__5EBF139D">
+    <check id="72" parent="49" name="CK__comments__accoun__5EBF139D">
       <ObjectId>1589580701</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.05:59:02.173</CreatedTimestamp>
@@ -308,7 +378,7 @@
       <ColNames>accountID</ColNames>
       <Predicate>[accountID]&gt;=0</Predicate>
     </check>
-    <check id="62" parent="48" name="CK__comments__commen__5CD6CB2B">
+    <check id="73" parent="49" name="CK__comments__commen__5CD6CB2B">
       <ObjectId>1557580587</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.05:59:02.167</CreatedTimestamp>
@@ -316,7 +386,7 @@
       <ColNames>commentID</ColNames>
       <Predicate>[commentID]&gt;=0</Predicate>
     </check>
-    <check id="63" parent="48" name="CK__comments__musicI__5DCAEF64">
+    <check id="74" parent="49" name="CK__comments__musicI__5DCAEF64">
       <ObjectId>1573580644</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.05:59:02.173</CreatedTimestamp>
@@ -324,17 +394,17 @@
       <ColNames>musicID</ColNames>
       <Predicate>[musicID]&gt;=0</Predicate>
     </check>
-    <column id="64" parent="49" name="user1">
+    <column id="75" parent="50" name="user1">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="49" name="user2">
+    <column id="76" parent="50" name="user2">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="66" parent="49" name="PK__friends__E934B3F56A3C47BD">
+    <index id="77" parent="50" name="PK__friends__E934B3F56A3C47BD">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user1
@@ -342,7 +412,7 @@ user2</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="67" parent="49" name="PK__friends__E934B3F56A3C47BD">
+    <key id="78" parent="50" name="PK__friends__E934B3F56A3C47BD">
       <ObjectId>901578250</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-30.06:05:49.933</CreatedTimestamp>
@@ -352,17 +422,17 @@ user2</ColNames>
       <UnderlyingIndexName>PK__friends__E934B3F56A3C47BD</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="68" parent="50" name="sheetID">
+    <column id="79" parent="51" name="sheetID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="50" name="musicID">
+    <column id="80" parent="51" name="musicID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="70" parent="50" name="PK__madeup__E6BC74CA47A5A2EB">
+    <index id="81" parent="51" name="PK__madeup__E6BC74CA47A5A2EB">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sheetID
@@ -370,7 +440,7 @@ musicID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="50" name="PK__madeup__E6BC74CA47A5A2EB">
+    <key id="82" parent="51" name="PK__madeup__E6BC74CA47A5A2EB">
       <ObjectId>1637580872</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.20:15:00.853</CreatedTimestamp>
@@ -380,7 +450,7 @@ musicID</ColNames>
       <UnderlyingIndexName>PK__madeup__E6BC74CA47A5A2EB</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="72" parent="50" name="CK__madeup__musicID__6383C8BA">
+    <check id="83" parent="51" name="CK__madeup__musicID__6383C8BA">
       <ObjectId>1669580986</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.20:15:00.857</CreatedTimestamp>
@@ -388,7 +458,7 @@ musicID</ColNames>
       <ColNames>musicID</ColNames>
       <Predicate>[musicID]&gt;=0</Predicate>
     </check>
-    <check id="73" parent="50" name="CK__madeup__sheetID__628FA481">
+    <check id="84" parent="51" name="CK__madeup__sheetID__628FA481">
       <ObjectId>1653580929</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-11.20:15:00.857</CreatedTimestamp>
@@ -396,51 +466,51 @@ musicID</ColNames>
       <ColNames>sheetID</ColNames>
       <Predicate>[sheetID]&gt;=0</Predicate>
     </check>
-    <column id="74" parent="51" name="name">
+    <column id="85" parent="52" name="name">
       <Position>1</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="51" name="singer">
+    <column id="86" parent="52" name="singer">
       <Position>2</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="51" name="musicID">
+    <column id="87" parent="52" name="musicID">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="51" name="musictype">
+    <column id="88" parent="52" name="musictype">
       <Position>4</Position>
       <DefaultConstraintName>DF__music__musictype__4AB81AF0</DefaultConstraintName>
       <DefaultExpression>&apos;流行&apos;</DefaultExpression>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="51" name="edition">
+    <column id="89" parent="52" name="edition">
       <Position>5</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="51" name="authorID">
+    <column id="90" parent="52" name="authorID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="51" name="fileplace">
+    <column id="91" parent="52" name="fileplace">
       <Position>7</Position>
       <DataType>nvarchar(100 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="81" parent="51" name="PK__music__AB12F79EBA727C30">
+    <index id="92" parent="52" name="PK__music__AB12F79EBA727C30">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>musicID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="82" parent="51" name="PK__music__AB12F79EBA727C30">
+    <key id="93" parent="52" name="PK__music__AB12F79EBA727C30">
       <ObjectId>1221579390</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:44:17.320</CreatedTimestamp>
@@ -449,7 +519,7 @@ musicID</ColNames>
       <UnderlyingIndexName>PK__music__AB12F79EBA727C30</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="83" parent="51" name="CK__music__authorID__4CA06362">
+    <check id="94" parent="52" name="CK__music__authorID__4CA06362">
       <ObjectId>1285579618</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:44:17.380</CreatedTimestamp>
@@ -457,7 +527,7 @@ musicID</ColNames>
       <ColNames>authorID</ColNames>
       <Predicate>[authorID]&gt;=0</Predicate>
     </check>
-    <check id="84" parent="51" name="CK__music__musicID__49C3F6B7">
+    <check id="95" parent="52" name="CK__music__musicID__49C3F6B7">
       <ObjectId>1237579447</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:44:17.337</CreatedTimestamp>
@@ -465,48 +535,48 @@ musicID</ColNames>
       <ColNames>musicID</ColNames>
       <Predicate>[musicID]&gt;=0</Predicate>
     </check>
-    <default id="85" parent="51" name="DF__music__musictype__4AB81AF0">
+    <default id="96" parent="52" name="DF__music__musictype__4AB81AF0">
       <ObjectId>1253579504</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2021-07-10.02:44:17.377</ModifiedTimestamp>
       <ColNames>musictype</ColNames>
       <DefaultExpression>&apos;流行&apos;</DefaultExpression>
     </default>
-    <column id="86" parent="52" name="sheetID">
+    <column id="97" parent="53" name="sheetID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="52" name="sheetname">
+    <column id="98" parent="53" name="sheetname">
       <Position>2</Position>
       <DefaultConstraintName>DF__musicshee__sheet__5070F446</DefaultConstraintName>
       <DefaultExpression>&apos;新建歌单&apos;</DefaultExpression>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="52" name="musicnum">
+    <column id="99" parent="53" name="musicnum">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="89" parent="52" name="sheettime">
+    <column id="100" parent="53" name="sheettime">
       <Position>4</Position>
       <DataType>datetime2|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="90" parent="52" name="accountID">
+    <column id="101" parent="53" name="accountID">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="91" parent="52" name="PK__musicshe__1C0D5BB3FD89EDFB">
+    <index id="102" parent="53" name="PK__musicshe__1C0D5BB3FD89EDFB">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sheetID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="92" parent="52" name="PK__musicshe__1C0D5BB3FD89EDFB">
+    <key id="103" parent="53" name="PK__musicshe__1C0D5BB3FD89EDFB">
       <ObjectId>1317579732</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:45:56.127</CreatedTimestamp>
@@ -515,7 +585,7 @@ musicID</ColNames>
       <UnderlyingIndexName>PK__musicshe__1C0D5BB3FD89EDFB</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="93" parent="52" name="CK__musicshee__accou__52593CB8">
+    <check id="104" parent="53" name="CK__musicshee__accou__52593CB8">
       <ObjectId>1381579960</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:45:56.140</CreatedTimestamp>
@@ -523,7 +593,7 @@ musicID</ColNames>
       <ColNames>accountID</ColNames>
       <Predicate>[accountID]&gt;=0</Predicate>
     </check>
-    <check id="94" parent="52" name="CK__musicshee__music__5165187F">
+    <check id="105" parent="53" name="CK__musicshee__music__5165187F">
       <ObjectId>1365579903</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:45:56.137</CreatedTimestamp>
@@ -531,7 +601,7 @@ musicID</ColNames>
       <ColNames>musicnum</ColNames>
       <Predicate>[musicnum]&gt;=0</Predicate>
     </check>
-    <check id="95" parent="52" name="CK__musicshee__sheet__4F7CD00D">
+    <check id="106" parent="53" name="CK__musicshee__sheet__4F7CD00D">
       <ObjectId>1333579789</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-07-10.02:45:56.137</CreatedTimestamp>
@@ -539,56 +609,56 @@ musicID</ColNames>
       <ColNames>sheetID</ColNames>
       <Predicate>[sheetID]&gt;=0</Predicate>
     </check>
-    <default id="96" parent="52" name="DF__musicshee__sheet__5070F446">
+    <default id="107" parent="53" name="DF__musicshee__sheet__5070F446">
       <ObjectId>1349579846</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2021-07-10.02:45:56.137</ModifiedTimestamp>
       <ColNames>sheetname</ColNames>
       <DefaultExpression>&apos;新建歌单&apos;</DefaultExpression>
     </default>
-    <column id="97" parent="53" name="username">
+    <column id="108" parent="54" name="username">
       <Position>1</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="98" parent="53" name="userID">
+    <column id="109" parent="54" name="userID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="53" name="sex">
+    <column id="110" parent="54" name="sex">
       <Position>3</Position>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="100" parent="53" name="password">
+    <column id="111" parent="54" name="password">
       <Position>4</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="101" parent="53" name="telenumber">
+    <column id="112" parent="54" name="telenumber">
       <Position>5</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="102" parent="53" name="email">
+    <column id="113" parent="54" name="email">
       <Position>6</Position>
       <DataType>nvarchar(30 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="103" parent="53" name="accountstate">
+    <column id="114" parent="54" name="accountstate">
       <Position>7</Position>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="104" parent="53" name="PK__users__CB9A1CDF264DA146">
+    <index id="115" parent="54" name="PK__users__CB9A1CDF264DA146">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="105" parent="53" name="PK__users__CB9A1CDF264DA146">
+    <key id="116" parent="54" name="PK__users__CB9A1CDF264DA146">
       <ObjectId>597577167</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-25.03:05:49.483</CreatedTimestamp>
