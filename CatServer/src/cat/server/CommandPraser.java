@@ -265,7 +265,7 @@ public class CommandPraser
             if (exitcode==0)
             {
                 Music music=new Music(bean.getInfo());
-                music.setAuthorID(Integer.parseInt(bean.getUserid()));
+                //music.setAuthorID(Integer.parseInt(bean.getUserid()));
                 music.setFileplace(music.getName()+".mp3");
                 dbsession.insertmusicinfo(new Music(bean.getInfo()));
                 File oldName = new File(musicPath+bean.getFileName());
@@ -433,9 +433,14 @@ public class CommandPraser
         serverBean.setTimer(bean.getTimer());
         //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
         if (result)
-            serverBean.setInfo("1");
-        else
+        {
             serverBean.setInfo("0");
+        }
+        else
+        {
+            serverBean.setInfo("-1");
+        }
+
 
         cc.sendMessagewithsocket(serverBean);
     }
@@ -571,8 +576,8 @@ public class CommandPraser
 
     private void insertcomment(CatServer.ClientThread cc, CatBean bean)
     {
-
-        int res=dbsession.insertcommend(new Comments(bean.getInfo()));
+        Comments comments=new Comments(bean.getInfo(),dbsession);
+        int res=dbsession.insertcommend(comments);
 
         CatBean serverBean = new CatBean();
 

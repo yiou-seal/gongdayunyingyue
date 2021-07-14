@@ -122,6 +122,7 @@ public class Music extends Entityfather {
     this.setName(result.getString("name"));
     this.setMusictype(result.getString("musictype"));
     this.setEdition(result.getString("edition"));
+    this.setMusicID(result.getInt("musicID"));
     this.setAuthorID(result.getInt("authorID"));
     this.setFileplace(result.getString("fileplace"));
   }

@@ -116,8 +116,9 @@ public class databasesess
                 user.setSex(result.getString("sex"));
                 user.setTelenumber(result.getString("telenumber"));
                 user.setEmail(result.getString("email"));
+                user.setAccountstate(result.getString("accountstate"));
 
-                System.out.println();
+                System.out.println(user.getAccountstate());
             }
 
         } catch (Exception e)

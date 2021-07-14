@@ -1,6 +1,8 @@
 package database.entity;
 
 
+import database.databasesess;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -100,6 +102,19 @@ public class Comments extends Entityfather
         this.comment = spstr[1];
         this.commenttime = Timestamp.valueOf(spstr[2]);
         this.musicID = Integer.parseInt(spstr[3]);
+        this.accountID = Integer.parseInt(spstr[4]);
+    }
+
+    public Comments(String dollarstr , databasesess dbs)
+    {
+        DateFormat sdf = new SimpleDateFormat(timeformat);
+        String[] spstr = dollarstr.split("\\$", -1);
+        this.commentID = Integer.parseInt(spstr[0]);
+        this.comment = spstr[1];
+        this.commenttime = Timestamp.valueOf(spstr[2]);
+        Music music=new Music();
+        dbs.findby(music,"music","name","'"+spstr[3]+"'");
+        this.musicID = music.getMusicID();
         this.accountID = Integer.parseInt(spstr[4]);
     }
 

@@ -182,6 +182,9 @@
       <workItem from="1626142652814" duration="7453000" />
       <workItem from="1626151196621" duration="3249000" />
       <workItem from="1626159173358" duration="6201000" />
+      <workItem from="1626165921891" duration="6215000" />
+      <workItem from="1626179804097" duration="10680000" />
+      <workItem from="1626227064274" duration="1256000" />
     </task>
     <servers />
   </component>
@@ -230,11 +233,6 @@
           <line>274</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
-          <line>267</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
           <line>259</line>
@@ -244,6 +242,61 @@
           <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
           <line>261</line>
           <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/entity/Music.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>266</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>444</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>424</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>420</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/entity/UsersEntity.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/database/entity/Comments.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>579</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>578</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CommandPraser.java</url>
+          <line>581</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
