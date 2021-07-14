@@ -210,6 +210,8 @@ public class CatServer
                             sleep(1000);
                             System.out.println("hou");
                             cp.sendfriendsandmyselfinfo(this,bean);
+                            System.out.println("case 10用户信息"+ bean.getFileName());
+                            System.out.println("case 10用户信息bean"+ bean);
 
                             break;
                         }

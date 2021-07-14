@@ -90,14 +90,14 @@ public class databasesess
 
     }
 
-    public UsersEntity getuserinfo(String username)
+    public UsersEntity getuserinfo(String userid)
     {
 
         Statement st;
         ResultSet result;
 
 
-        String sql = "select * from users where userID =" + username + "";
+        String sql = "select * from users where userID =" + userid + "";
         UsersEntity user = new UsersEntity();
         try
         {
@@ -152,11 +152,8 @@ public class databasesess
         return true;
     }
 
-
     public int insertuserinfo(UsersEntity user)
     {
-
-
         Statement st;
         ResultSet result;
         int count = count("users", "userID");
@@ -438,7 +435,7 @@ public class databasesess
             st = con.createStatement();
             st.executeUpdate(sql);
 
-            System.out.println("success setcomment");
+            System.out.println("success setparise");
             return 0;
 
         } catch (Exception e)
@@ -454,8 +451,8 @@ public class databasesess
 
         Statement st;
         ResultSet result;
-        int count = count("comments", "commentID");
-        count++;
+//        int count = count("comments", "commentID");
+//        count++;
 
         Music music=new Music();
         findby(music,"music","name",'\''+musicname+'\'');
@@ -491,7 +488,8 @@ public class databasesess
         String sql1 = String.format("select count(*) from comments where comment='点赞' and commenttime='%s' and musicID= %d",specialcommenttime,musicid);
         String sql2 = String.format("select count(*) from comments where comment='点赞' and commenttime='%s' and accountID=%d and musicID= %d",specialcommenttime,Integer.parseInt(accountid),musicid);
         try
-        {int num=0,isornot=0;
+        {
+            int num=0,isornot=0;
             st = con.createStatement();
             result = st.executeQuery(sql1);
             System.out.println("success getcount");

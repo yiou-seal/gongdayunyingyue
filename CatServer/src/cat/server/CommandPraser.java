@@ -348,10 +348,35 @@ public class CommandPraser
         serverBean.setUserid(bean.getUserid());
         serverBean.setTimer(bean.getTimer());
         //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
-        dbsession.setuserinfo(new UsersEntity(bean.getInfo()));
+        UsersEntity usersEntity=new UsersEntity(bean.getInfo());
+        UsersEntity usersEntity1=dbsession.getuserinfo(usersEntity.getUserId()+"");
+        usersEntity.setPassword(usersEntity1.getPassword());
+        dbsession.setuserinfo(usersEntity);
+        serverBean.setInfo(dbsession.getuserinfo(bean.getUserid()).toString());
+        System.out.println("用户信息"+dbsession.getuserinfo(bean.getUserid()).toString());
+        cc.sendMessagewithsocket(serverBean);
+    }
+    private void edituserpassword(CatServer.ClientThread cc, CatBean bean)
+    {
+        CatBean serverBean = new CatBean();
+        serverBean.setType(11);
+        serverBean.setIcon(bean.getIcon());
+        HashSet<String> target = new HashSet<String>();
+        target.add(bean.getUserid());
+        serverBean.setClients(target);
+        serverBean.setTo(bean.getTo());
+        serverBean.setUserid(bean.getUserid());
+        serverBean.setTimer(bean.getTimer());
+        //serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+        UsersEntity usersEntity=new UsersEntity(bean.getInfo());
+        UsersEntity usersEntity1=dbsession.getuserinfo(usersEntity.getUserId()+"");
+        usersEntity.setPassword(usersEntity1.getPassword());
+        dbsession.setuserinfo(usersEntity);
         serverBean.setInfo(dbsession.getuserinfo(bean.getUserid()).toString());
         cc.sendMessage(serverBean);
     }
+
+
 
     private void getuserinfo(CatServer.ClientThread cc, CatBean bean)
     {
